@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Create new PROS Project
+Bundle-SymbolicName: com.purduesigbots.newcortexproject;singleton:=true
+Bundle-Version: 1.0.0.1
+Bundle-Activator: com.purduesigbots.newcortexproject.Activator
+Bundle-Vendor: Purdue ACM SIG BOTS
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

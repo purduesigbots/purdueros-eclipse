@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="VEX Cortex"
+            id="com.purduesigbots.newcortexproject.category.NewCortexProject">
+      </category>
+      <wizard
+            name="VEX Cortex PROS Project"
+            icon="icons/vcc16.png"
+            category="com.purduesigbots.newcortexproject.category.NewCortexProject"
+            class="com.purduesigbots.newcortexproject.wizards.NewCortexProject"
+            id="com.purduesigbots.newcortexproject.wizards.NewCortexProject"
+            project="true">
+      </wizard>
+   </extension>
+
+</plugin>
