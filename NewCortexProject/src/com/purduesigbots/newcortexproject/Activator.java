@@ -11,7 +11,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.acm.newcortexproject";
+	public static final String PLUGIN_ID = "com.purduesigbots.newcortexproject";
 	// The shared instance
 	private static Activator plugin;
 

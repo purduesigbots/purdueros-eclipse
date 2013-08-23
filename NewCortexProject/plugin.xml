@@ -17,5 +17,30 @@
             project="true">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            name="Switch Project To Version"
+            categoryId="com.purduesigbots.vexflash.commands.category"
+            id="com.purduesigbots.newcortexproject.commands.updateCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.purduesigbots.newcortexproject.commands.updateCommand"
+            class="com.purduesigbots.newcortexproject.handlers.UpdatePROSHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+       <menuContribution
+            locationURI="menu:com.purduesigbots.vexflash.menus.vexMenu?after=com.purduesigbots.vexflash.menus.firmwareCommand">
+         <dynamic
+               class="com.purduesigbots.newcortexproject.menus.UpdateMenu"
+               id="com.purduesigbots.newcortexproject.menus.updateMenu">
+         </dynamic>
+      </menuContribution>
+   </extension>
 
 </plugin>

@@ -1,7 +1,7 @@
 package com.purduesigbots.newcortexproject.wizards;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.*;
 import java.net.URI;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
@@ -9,7 +9,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.jface.wizard.*;
 import org.eclipse.ui.*;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.actions.*;
 import org.eclipse.ui.dialogs.*;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
@@ -48,7 +48,7 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 	/**
 	 * Adds a new file to the project.
 	 */
-	private static void addFileToProject(IContainer container, Path path,
+	public static void addFileToProject(IContainer container, Path path,
 			InputStream contentStream, IProgressMonitor monitor)
 			throws CoreException {
 		final IFile file = container.getFile(path);
@@ -65,7 +65,7 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 		return new Path(parent.getName() + Path.SEPARATOR + child);
 	}
 
-	private static InputStream openStream(String path) {
+	public static InputStream openStream(String path) {
 		return NewCortexProject.class.getResourceAsStream("/sample/" + path);
 	}
 
@@ -119,6 +119,8 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 				openStream("src/init.c"), monitor);
 			addFileToProject(container, createPath(srcFolder, "Makefile"),
 				openStream("src/Makefile"), monitor);
+		} catch (OperationCanceledException ignore) {
+			/* Swallow a cancel gracefully */
 		} finally {
 			monitor.done();
 		}
