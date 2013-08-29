@@ -1,15 +1,16 @@
-package com.purduesigbots.perspective;
+package com.purduesigbots.vexflash;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * Default activator for Midnight-C IDE perspective
+ * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
+
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.purduesigbots.perspective"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.purduesigbots.vexflash"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

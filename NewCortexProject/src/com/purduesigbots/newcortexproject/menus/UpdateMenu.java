@@ -15,8 +15,8 @@ import com.purduesigbots.newcortexproject.wizards.NewCortexProject;
  * Maintains the dynamic "Switch project to PROS ***" menu item
  */
 public class UpdateMenu extends CompoundContributionItem {
-	private static final Pattern PROS_VERSION =
-		Pattern.compile("PROS ([0-9]{1,2}[abro][0-9]{2})");
+	public static final String PROS_VERSION_REGEX = "([0-9]{1,2}[abro][0-9]{2})";
+	private static final Pattern PROS_VERSION = Pattern.compile("PROS " + PROS_VERSION_REGEX);
 	private static String prosVersion = null;
 
 	private static void updatePROSVersion() {

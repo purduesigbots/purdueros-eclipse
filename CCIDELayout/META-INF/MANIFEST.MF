@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Midnight-C Perspective
+Bundle-Name: Vex Cortex/PROS Perspective
 Bundle-SymbolicName: com.purduesigbots.perspective;singleton:=true
-Bundle-Version: 1.0.0.1
+Bundle-Version: 1.0.0.2
 Bundle-Activator: com.purduesigbots.perspective.Activator
 Bundle-Vendor: Purdue ACM SIG BOTS
 Require-Bundle: org.eclipse.ui,
@@ -11,5 +11,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.cdt.ui;bundle-version="5.4.0",
  com.purduesigbots.newcortexproject;bundle-version="1.0.0.1",
  com.purduesigbots.vexflash;bundle-version="1.0.0.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

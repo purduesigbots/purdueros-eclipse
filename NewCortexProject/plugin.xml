@@ -42,5 +42,11 @@
          </dynamic>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="com.purduesigbots.newcortexproject.menus.UpdateChecker">
+      </startup>
+   </extension>
 
 </plugin>
