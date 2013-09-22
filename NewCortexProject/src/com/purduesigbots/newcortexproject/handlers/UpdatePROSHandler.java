@@ -17,6 +17,14 @@ import com.purduesigbots.newcortexproject.wizards.NewCortexProject;
  * shipped with the UI.
  */
 public class UpdatePROSHandler extends AbstractHandler {
+	private static final String[] UPGRADE_FILES = new String[] {
+		"firmware/libccos.a",
+		"firmware/uniflash.jar",
+		"include/API.h",
+		"src/Makefile",
+		"Makefile"
+	};
+
 	/**
 	 * Fetches the current project by finding the owner of the uppermost editor.
 	 * 
@@ -71,8 +79,7 @@ public class UpdatePROSHandler extends AbstractHandler {
 			if (prosVersion != null && prosVersion.length() > 0)
 				text = "Update \"" + proj.getName() + "\" to PROS version " + prosVersion + "?";
 			else
-				text = "Update \"" + proj.getName() +
-					"\" to the version of PROS contained in this IDE?";
+				text = "Update \"" + proj.getName() + "\" to this IDE's version of PROS?";
 			// Got project ref, check for firmware/ folder
 			final IFolder fwFolder = proj.getFolder(new Path("firmware"));
 			if (fwFolder.exists()) {
@@ -103,37 +110,21 @@ public class UpdatePROSHandler extends AbstractHandler {
 	 */
 	private static void updatePROSBinary(final IProject proj, final IProgressMonitor mon)
 			throws IOException {
-		// Establish files required
-		final IFile prosBinary = proj.getFile(new Path("firmware" +
-			Path.SEPARATOR + "libccos.a"));
-		final IFile uploadBinary = proj.getFile(new Path("firmware" +
-			Path.SEPARATOR + "uniflash.jar"));
-		final IFile apiHeader = proj.getFile(new Path("include" +
-			Path.SEPARATOR + "API.h"));
-		// Obtain handles to binary files
-		final InputStream prosStream = NewCortexProject.openStream("firmware/libccos.a");
-		final InputStream uploadStream = NewCortexProject.openStream("firmware/uniflash.jar");
-		final InputStream apiStream = NewCortexProject.openStream("include/API.h");
 		try {
-			mon.beginTask("Updating PROS", 200);
-			// Update PROS library
-			if (prosBinary.exists())
-				prosBinary.setContents(prosStream, true, true, mon);
-			else
-				prosBinary.create(prosStream, true, mon);
-			// Update uniflash
-			if (uploadBinary.exists())
-				uploadBinary.setContents(uploadStream, true, true, mon);
-			else
-				uploadBinary.create(uploadStream, true, mon);
-			// Update uniflash
-			if (apiHeader.exists())
-				apiHeader.setContents(apiStream, true, true, mon);
-			else
-				apiHeader.create(apiStream, true, mon);
-			prosStream.close();
-			uploadStream.close();
-			apiStream.close();
+			mon.beginTask("Updating PROS", 100 * UPGRADE_FILES.length);
+			for (final String path : UPGRADE_FILES) {
+				final IFile bin = proj.getFile(new Path(path));
+				// Create stream to jar version
+				final InputStream stream = NewCortexProject.openStream(path);
+				// Update contents
+				if (bin.exists())
+					bin.setContents(stream, true, true, mon);
+				else
+					bin.create(stream, true, mon);
+				// Clean up
+				stream.close();
+			}
+		} catch (OperationCanceledException ignore) {
 		} catch (CoreException e) {
 			// Pass it up the tree for outer to handle
 			if (e.getStatus() != null && e.getStatus().getCode() != IStatus.CANCEL)
