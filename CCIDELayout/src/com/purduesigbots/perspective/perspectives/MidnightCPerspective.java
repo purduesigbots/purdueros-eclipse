@@ -6,12 +6,10 @@ import org.eclipse.ui.IPerspectiveFactory;
 import org.eclipse.ui.console.IConsoleConstants;
 
 /**
- *  This class is meant to serve as an example for how various contributions 
- *  are made to a perspective. Note that some of the extension point id's are
- *  referred to as API constants while others are hardcoded and may be subject 
- *  to change. 
+ * Contributes the essential Midnight-C perspective items required for use.
  */
 public class MidnightCPerspective implements IPerspectiveFactory {
+	private static final String TERMINAL_VIEW = "org.eclipse.tm.terminal.view.TerminalView";//NON-NLS-1
 
 	private IPageLayout factory;
 
@@ -36,6 +34,7 @@ public class MidnightCPerspective implements IPerspectiveFactory {
 		bottom.addView(IConsoleConstants.ID_CONSOLE_VIEW);
 		bottom.addView(IPageLayout.ID_PROBLEM_VIEW);
 		bottom.addView(IPageLayout.ID_TASK_LIST);
+		bottom.addView(TERMINAL_VIEW);
 		IFolderLayout left = factory.createFolder("Project Explorer", IPageLayout.LEFT, 0.2f,
 			factory.getEditorArea());
 		left.addView(IPageLayout.ID_PROJECT_EXPLORER);
@@ -67,6 +66,7 @@ public class MidnightCPerspective implements IPerspectiveFactory {
 		factory.addShowViewShortcut(IPageLayout.ID_OUTLINE);
 		factory.addShowViewShortcut(IPageLayout.ID_PROJECT_EXPLORER);
 		factory.addShowViewShortcut(IPageLayout.ID_TASK_LIST);
+		factory.addShowViewShortcut(TERMINAL_VIEW);
 	}
 
 }

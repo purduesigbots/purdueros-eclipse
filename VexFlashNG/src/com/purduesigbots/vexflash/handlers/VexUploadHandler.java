@@ -1,7 +1,9 @@
 package com.purduesigbots.vexflash.handlers;
 
+// XXX Reflection is ugly but it ensures no NoClassDefFoundError if terminals is uninstalled
+import java.lang.reflect.*;
 import java.io.File;
-import java.util.List;
+import java.util.*;
 
 import org.eclipse.core.commands.*;
 import org.eclipse.core.resources.*;
@@ -25,6 +27,48 @@ import com.purduesigbots.vexflash.*;
  */
 public class VexUploadHandler extends AbstractHandler {
 	/**
+	 * Checks a view to see if it is a terminal and can be closed.
+	 * 
+	 * @param view the view to inspect
+	 * @param portName the port name to match against
+	 * @return whether the view was a terminal and it was closed successfully
+	 */
+	private static boolean checkCloseTerminal(final IViewPart view, final String portName) {
+		if (view.getClass().getSimpleName().equals("TerminalView")) {
+			// Terminal open, maybe disconnect it!
+			try {
+				// getActiveConnection().getFullSummary()
+				final String summary = view.getTitleToolTip();
+				// If the summary contains our port name
+				if (summary != null && summary.toString().toLowerCase().contains(portName)) {
+					final Method m = view.getClass().getMethod("onTerminalDisconnect",
+						(Class<?>[])null);
+					m.invoke(view, (Object[])null);
+					return true;
+				}
+				// If we die here, not an issue
+			} catch (Exception ignore) { ignore.printStackTrace(); }
+		}
+		return false;
+	}
+	/**
+	 * Reopens the specified terminals.
+	 * 
+	 * @param reopen the terminals to re-open
+	 */
+	private static void reopenTerminals(final List<IViewPart> reopen) {
+		for (IViewPart part : reopen) {
+			// part should be an ITerminalView
+			try {
+				final Method m = part.getClass().getMethod("onTerminalConnect",
+					(Class<?>[])null);
+				m.invoke(part, (Object[])null);
+				// If we die here, not an issue
+			} catch (Exception ignore) { }
+		}
+	}
+
+	/**
 	 * The saved serial port.
 	 */
 	private PortPrompter port;
@@ -47,6 +91,34 @@ public class VexUploadHandler extends AbstractHandler {
 	public VexUploadHandler() {
 		port = new PortPrompter();
 	}
+	/**
+	 * Saves everything that is open with prompt.
+	 */
+	private void bulkSave() {
+		final IWorkbenchPage[] pages = window.getPages();
+		for (IWorkbenchPage page : pages)
+			page.saveAllEditors(true);
+	}
+	/**
+	 * Kills any terminals using the upload port.
+	 * 
+	 * @param portName the port name to match terminals against
+	 */
+	private List<IViewPart> closeTerminals(final String portName) {
+		final IWorkbenchPage[] pages = window.getPages();
+		final List<IViewPart> closed = new LinkedList<IViewPart>();
+		for (IWorkbenchPage page : pages) {
+			final IViewReference[] refs = page.getViewReferences();
+			// get around deprecation on getViews()
+			for (IViewReference ref : refs) {
+				final IViewPart vv = ref.getView(true);
+				// Close?
+				if (vv != null && checkCloseTerminal(vv, portName.toLowerCase()))
+					closed.add(vv);
+			}
+		}
+		return closed;
+	}
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -56,8 +128,9 @@ public class VexUploadHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		if (lockUpload() && window != null) {
+		if (window != null && lockUpload()) {
 			final IProject project = getCurrentProject();
+			bulkSave();
 			if (project == null)
 				// Can't tell for sure
 				uploadError("Open a project in the Project Explorer view to select a " +
@@ -135,6 +208,49 @@ public class VexUploadHandler extends AbstractHandler {
 			// All done
 			mon.done();
 		}
+	}
+	/**
+	 * Processes the upload after terminals are closed.
+	 * 
+	 * @param project the project to upload
+	 * @param cl the terminals closed for uploading
+	 * @param bin the file to upload
+	 */
+	private void procUpload(final IProject project, final List<IViewPart> cl, final File bin) {
+		final Job job = new Job("Uploading " + project.getName()) {
+			protected IStatus run(final IProgressMonitor mon) {
+				try {
+					// Wait for terminals to close fully
+					if (!cl.isEmpty())
+						Thread.sleep(1000L);
+					// Upload to processor
+					processorUpload(bin, mon, project);
+					util = null;
+				} catch (OperationCanceledException e) {
+					unlockUpload();
+					// Die quietly if cancelled
+					return Status.CANCEL_STATUS;
+				} catch (Exception uploadError) {
+					final String msg = uploadError.getMessage();
+					if (msg == null)
+						uploadError("Failed to upload the project to VEX Cortex");
+					else
+						uploadError(msg);
+				}
+				// Reopen the terminals in a UI job
+				final UIJob ui = new UIJob("Reopen closed terminals") {
+					public IStatus runInUIThread(IProgressMonitor monitor) {
+						reopenTerminals(cl);
+						unlockUpload();
+						return Status.OK_STATUS;
+					}
+				};
+				ui.schedule();
+				return Status.OK_STATUS;
+			}
+		};
+		job.setPriority(Job.LONG);
+		job.schedule();
 	}
 	/**
 	 * Causes the serial port to be re-selected if necessary.
@@ -221,6 +337,9 @@ public class VexUploadHandler extends AbstractHandler {
 	protected void startUpload(final IProject project) {
 		final Job uploadJob = new Job("Compiling " + project.getName()) {
 			protected IStatus run(final IProgressMonitor mon) {
+				// Check for binary file
+				final File prj = project.getLocation().toFile();
+				final File bin = new File(new File(prj, "bin"), "output.bin");
 				try {
 					// Compile project
 					project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, mon);
@@ -231,34 +350,29 @@ public class VexUploadHandler extends AbstractHandler {
 						if (marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO) ==
 								IMarker.SEVERITY_ERROR)
 							throw new RuntimeException("Compilation error found!");
-				} catch (Exception compileError) {
+					// DRY
+					if (!bin.exists())
+						throw new RuntimeException("No output file found!");
+				} catch (OperationCanceledException e) {
+					unlockUpload();
+					// Die quietly if cancelled
+					return Status.CANCEL_STATUS;
+				} catch (Exception e) {
 					uploadError("Errors occurred when compiling program!\nA full list of " +
 						"errors and warnings is available in the Problems tab.");
 					return Status.OK_STATUS;
 				}
-				setName("Uploading " + project.getName());
-				// Check for binary file
-				File bin = project.getLocation().toFile();
-				bin = new File(bin, "bin");
-				bin = new File(bin, "output.bin");
-				if (!bin.exists())
-					uploadError("Errors occurred when compiling program!\nA full list of " +
-						"errors and warnings is available in the Problems tab.");
-				else
-					try {
-						// Upload to processor
-						processorUpload(bin, mon, project);
-						util = null;
-					} catch (Exception uploadError) {
-						final String msg = uploadError.getMessage();
-						if (msg == null)
-							// No error message
-							return new Status(IStatus.ERROR, "Upload Error",
-								"Failed to upload the project to VEX Cortex", uploadError);
-						else
-							uploadError(msg);
+				// Save state
+				final UIJob ui = new UIJob("Close terminals") {
+					public IStatus runInUIThread(IProgressMonitor monitor) {
+						final List<IViewPart> cl = closeTerminals(port.getPort());
+						procUpload(project, cl, bin);
+						return Status.OK_STATUS;
 					}
-				unlockUpload();
+				};
+				ui.setPriority(Job.SHORT);
+				ui.schedule();
+				// Restore state
 				return Status.OK_STATUS;
 			}
 		};
