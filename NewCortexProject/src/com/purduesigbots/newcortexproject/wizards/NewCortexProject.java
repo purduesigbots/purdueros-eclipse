@@ -3,6 +3,7 @@ package com.purduesigbots.newcortexproject.wizards;
 import java.io.*;
 import java.lang.reflect.*;
 import java.net.URI;
+
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -12,6 +13,8 @@ import org.eclipse.ui.*;
 import org.eclipse.ui.actions.*;
 import org.eclipse.ui.dialogs.*;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
+
+import com.purduesigbots.newcortexproject.CmdLineUpdate;
 
 /**
  * Implements a "File > New > VEX Cortex PROS Project" wizard!
@@ -65,10 +68,6 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 		return new Path(parent.getName() + Path.SEPARATOR + child);
 	}
 
-	public static InputStream openStream(String path) {
-		return NewCortexProject.class.getResourceAsStream("/sample/" + path);
-	}
-
 	/**
 	 * This creates the project in the workspace.
 	 * 
@@ -86,39 +85,41 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 			proj.open(IResource.BACKGROUND_REFRESH, new SubProgressMonitor(monitor, 100));
 			IContainer container = (IContainer) proj;
 			/* Add makefiles */
-			addFileToProject(container, new Path("Makefile"), openStream("Makefile"), monitor);
-			addFileToProject(container, new Path("common.mk"), openStream("common.mk"), monitor);
-			addTemplateFile(container, new Path(".cproject"), openStream(".cproject"), monitor,
-				proj.getName());
-			addTemplateFile(container, new Path(".project"), openStream(".project"), monitor,
-				proj.getName());
+			addFileToProject(container, new Path("Makefile"),
+				CmdLineUpdate.openStream("Makefile"), monitor);
+			addFileToProject(container, new Path("common.mk"),
+				CmdLineUpdate.openStream("common.mk"), monitor);
+			addTemplateFile(container, new Path(".cproject"),
+				CmdLineUpdate.openStream(".cproject"), monitor, proj.getName());
+			addTemplateFile(container, new Path(".project"),
+				CmdLineUpdate.openStream(".project"), monitor, proj.getName());
 			/* Add the firmware, include, src folders */
 			final IFolder fwFolder = container.getFolder(new Path("firmware"));
 			fwFolder.create(true, true, monitor);
 			addFileToProject(container, createPath(fwFolder, "cortex.ld"),
-				openStream("firmware/cortex.ld"), monitor);
+				CmdLineUpdate.openStream("firmware/cortex.ld"), monitor);
 			addFileToProject(container, createPath(fwFolder, "STM32F10x.ld"),
-				openStream("firmware/STM32F10x.ld"), monitor);
+				CmdLineUpdate.openStream("firmware/STM32F10x.ld"), monitor);
 			addFileToProject(container, createPath(fwFolder, "libccos.a"),
-				openStream("firmware/libccos.a"), monitor);
+				CmdLineUpdate.openStream("firmware/libccos.a"), monitor);
 			addFileToProject(container, createPath(fwFolder, "uniflash.jar"),
-				openStream("firmware/uniflash.jar"), monitor);
+				CmdLineUpdate.openStream("firmware/uniflash.jar"), monitor);
 			final IFolder incFolder = container.getFolder(new Path("include"));
 			incFolder.create(true, true, monitor);
 			addFileToProject(container, createPath(incFolder, "API.h"),
-				openStream("include/API.h"), monitor);
+				CmdLineUpdate.openStream("include/API.h"), monitor);
 			addFileToProject(container, createPath(incFolder, "main.h"),
-				openStream("include/main.h"), monitor);
+				CmdLineUpdate.openStream("include/main.h"), monitor);
 			final IFolder srcFolder = container.getFolder(new Path("src"));
 			srcFolder.create(true, true, monitor);
 			addFileToProject(container, createPath(srcFolder, "auto.c"),
-				openStream("src/auto.c"), monitor);
+				CmdLineUpdate.openStream("src/auto.c"), monitor);
 			addFileToProject(container, createPath(srcFolder, "opcontrol.c"),
-				openStream("src/opcontrol.c"), monitor);
+				CmdLineUpdate.openStream("src/opcontrol.c"), monitor);
 			addFileToProject(container, createPath(srcFolder, "init.c"),
-				openStream("src/init.c"), monitor);
+				CmdLineUpdate.openStream("src/init.c"), monitor);
 			addFileToProject(container, createPath(srcFolder, "Makefile"),
-				openStream("src/Makefile"), monitor);
+				CmdLineUpdate.openStream("src/Makefile"), monitor);
 		} catch (OperationCanceledException ignore) {
 			/* Swallow a cancel gracefully */
 		} finally {

@@ -3,12 +3,13 @@ package com.purduesigbots.newcortexproject.menus;
 import java.io.*;
 import java.net.*;
 import java.util.regex.*;
-
 import org.eclipse.core.runtime.*;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.*;
 import org.eclipse.ui.progress.UIJob;
+
+import com.purduesigbots.newcortexproject.CmdLineUpdate;
 
 public class UpdateChecker implements IStartup {
 	// The URL to check for updates
@@ -65,7 +66,7 @@ public class UpdateChecker implements IStartup {
 	 * @return the newest version for updates, or null if none available
 	 */
 	private static String runUpdateCheck(final CharSequence result) {
-		final String ourVersion = UpdateMenu.getPROSVersion();
+		final String ourVersion = CmdLineUpdate.getPROSVersion();
 		String updateVersion = ourVersion;
 		// Are we release?
 		final boolean isRelease = ourVersion.indexOf('r') > 0;
@@ -77,7 +78,7 @@ public class UpdateChecker implements IStartup {
 			major = Integer.parseInt(ourVersion.substring(0, len - 3));
 		} catch (NumberFormatException ignore) { }
 		// Scan the string for "valid PROS version":
-		final Matcher m = Pattern.compile("\"" + UpdateMenu.PROS_VERSION_REGEX + "\":").
+		final Matcher m = Pattern.compile("\"" + CmdLineUpdate.PROS_VERSION_REGEX + "\":").
 			matcher(result);
 		while (m.find()) {
 			// Extract group = PROS version
@@ -124,7 +125,7 @@ public class UpdateChecker implements IStartup {
 						// Grab input stream reference
 						final String v = runUpdateCheck(readDataFrom(conn.getInputStream()));
 						if (v != null)
-							notifyUpdateAvailable(UpdateMenu.getPROSVersion(), v);
+							notifyUpdateAvailable(CmdLineUpdate.getPROSVersion(), v);
 					}
 					conn.disconnect();
 				} catch (Exception ignore) {

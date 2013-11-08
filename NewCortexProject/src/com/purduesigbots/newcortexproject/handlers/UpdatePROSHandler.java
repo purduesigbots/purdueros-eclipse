@@ -1,6 +1,7 @@
 package com.purduesigbots.newcortexproject.handlers;
 
 import java.io.*;
+
 import org.eclipse.core.commands.*;
 import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
@@ -8,23 +9,13 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.*;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.UIJob;
-
-import com.purduesigbots.newcortexproject.menus.UpdateMenu;
-import com.purduesigbots.newcortexproject.wizards.NewCortexProject;
+import com.purduesigbots.newcortexproject.CmdLineUpdate;
 
 /**
  * Prompts the user for confirmation, then switches the current project's PROS to the version
  * shipped with the UI.
  */
 public class UpdatePROSHandler extends AbstractHandler {
-	private static final String[] UPGRADE_FILES = new String[] {
-		"firmware/libccos.a",
-		"firmware/uniflash.jar",
-		"include/API.h",
-		"src/Makefile",
-		"Makefile"
-	};
-
 	/**
 	 * Fetches the current project by finding the owner of the uppermost editor.
 	 * 
@@ -68,7 +59,7 @@ public class UpdatePROSHandler extends AbstractHandler {
 	 */
 	private static void updatePROS(final IWorkbenchWindow window, final IProgressMonitor mon) {
 		final String text;
-		final String prosVersion = UpdateMenu.getPROSVersion();
+		final String prosVersion = CmdLineUpdate.getPROSVersion();
 		// Check for the current project
 		final IProject proj = getCurrentProject(window);
 		if (proj == null)
@@ -111,11 +102,11 @@ public class UpdatePROSHandler extends AbstractHandler {
 	private static void updatePROSBinary(final IProject proj, final IProgressMonitor mon)
 			throws IOException {
 		try {
-			mon.beginTask("Updating PROS", 100 * UPGRADE_FILES.length);
-			for (final String path : UPGRADE_FILES) {
+			mon.beginTask("Updating PROS", 100 * CmdLineUpdate.UPGRADE_FILES.length);
+			for (final String path : CmdLineUpdate.UPGRADE_FILES) {
 				final IFile bin = proj.getFile(new Path(path));
 				// Create stream to jar version
-				final InputStream stream = NewCortexProject.openStream(path);
+				final InputStream stream = CmdLineUpdate.openStream(path);
 				// Update contents
 				if (bin.exists())
 					bin.setContents(stream, true, true, mon);
