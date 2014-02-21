@@ -1,6 +1,5 @@
 package com.purduesigbots.vexflash;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -41,11 +40,9 @@ public interface FlashUtility {
 	/**
 	 * Sets up the flash program and opens ports if ready.
 	 * 
-	 * @param file the file to flash
-	 * @param port the port to use
-	 * @param args the arguments to pass in
+	 * @param params the upload parameters to use
 	 * @throws SerialException if an I/O error occurs
 	 * @return true if and only if arguments were OK and flasher is ready to go (program())
 	 */
-	public boolean setup(File file, String[] args, String port) throws SerialException;
+	public boolean setup(UploadParams params) throws SerialException;
 }

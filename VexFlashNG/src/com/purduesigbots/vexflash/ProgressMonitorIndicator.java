@@ -16,7 +16,7 @@ public class ProgressMonitorIndicator implements Indicator {
 	}
 	public void begin() {
 		lastProgress = 0;
-		mon.subTask("Uploading code... 0%");
+		mon.subTask("Transferring data... 0%");
 	}
 	public void message(final String message) {
 		mon.subTask(message);
@@ -27,7 +27,7 @@ public class ProgressMonitorIndicator implements Indicator {
 	public void messageEnd(final String message) {
 	}
 	public void progress(final int progress) {
-		mon.subTask("Uploading code... " + progress + "%");
+		mon.subTask("Transferring data... " + progress + "%");
 		mon.worked(progress - lastProgress);
 		lastProgress = progress;
 	}

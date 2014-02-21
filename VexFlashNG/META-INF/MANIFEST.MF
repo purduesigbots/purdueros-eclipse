@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PROS Cortex Flash Utility
 Bundle-SymbolicName: com.purduesigbots.vexflash; singleton:=true
-Bundle-Version: 1.0.0.4
+Bundle-Version: 1.0.0.5
 Bundle-Activator: com.purduesigbots.vexflash.Activator
 Bundle-Vendor: Purdue ACM SIG BOTS
 Require-Bundle: org.eclipse.ui,

@@ -33,11 +33,14 @@ public class BinaryParser implements Parser {
 	public int length() {
 		return len;
 	}
-	public int read(final byte[] output, final int length) throws IOException {
+	public int read(final byte[] output, final int start, final int length) throws IOException {
 		int offset = 0, read;
 		// Can't use readExactly here because the signature is slightly different
-		while (offset < length && (read = is.read(output, offset, length - offset)) > 0)
+		while (offset < length && (read = is.read(output, start + offset, length - offset)) > 0)
 			offset += read;
 		return offset;
+	}
+	public String toString() {
+		return String.format("%s[len=%d]", getClass().getSimpleName(), length());
 	}
 }

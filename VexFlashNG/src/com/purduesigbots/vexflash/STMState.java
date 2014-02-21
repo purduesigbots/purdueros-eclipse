@@ -359,6 +359,14 @@ public class STMState {
 		return device;
 	}
 	/**
+	 * Gets the current serial port.
+	 * 
+	 * @return the currently connected serial port
+	 */
+	public SerialPortIO getPort() {
+		return port;
+	}
+	/**
 	 * Gets the device's Flash size.
 	 *
 	 * @return the size of the Flash array

@@ -18,6 +18,21 @@
             id="com.purduesigbots.vexflash.commands.firmwareCommand"
             name="Update Mastercode">
       </command>
+      <command
+            categoryId="com.purduesigbots.vexflash.commands.category"
+            id="com.purduesigbots.vexflash.commands.uploadPreserveCommand"
+            name="Upload Preserving Filesystem">
+      </command>
+      <command
+            categoryId="com.purduesigbots.vexflash.commands.category"
+            id="com.purduesigbots.vexflash.commands.downloadFileCommand"
+            name="Save File to Cortex">
+      </command>
+      <command
+            categoryId="com.purduesigbots.vexflash.commands.category"
+            id="com.purduesigbots.vexflash.commands.uploadFileCommand"
+            name="Read File from Cortex">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -28,6 +43,18 @@
       <handler
             class="com.purduesigbots.vexflash.handlers.VexFirmwareHandler"
             commandId="com.purduesigbots.vexflash.commands.firmwareCommand">
+      </handler>
+      <handler
+            class="com.purduesigbots.vexflash.handlers.VexUploadHandler"
+            commandId="com.purduesigbots.vexflash.commands.uploadPreserveCommand">
+      </handler>
+      <handler
+            class="com.purduesigbots.vexflash.handlers.VexUploadHandler"
+            commandId="com.purduesigbots.vexflash.commands.uploadFileCommand">
+      </handler>
+      <handler
+            class="com.purduesigbots.vexflash.handlers.VexUploadHandler"
+            commandId="com.purduesigbots.vexflash.commands.downloadFileCommand">
       </handler>
    </extension>
    <extension
@@ -53,6 +80,7 @@
                   id="com.purduesigbots.vexflash.menus.uploadCommand"
                   label="Upload to Cortex"
                   mnemonic="U"
+                  style="push"
                   tooltip="Upload current project to VEX Cortex">
             </command>
             <command
@@ -62,6 +90,39 @@
                   style="push"
                   tooltip="Launch VEXnet Firmware Upgrade Utility">
             </command>
+            <menu
+                  id="com.purduesigbots.vexflash.menus.filesystemMenu"
+                  label="File System"
+                  mnemonic="F"
+                  tooltip="Commands for manipulating the PROS File System, for advanced users">
+               <command
+                     commandId="com.purduesigbots.vexflash.commands.uploadPreserveCommand"
+                     icon="icons/vcc32p.png"
+                     id="com.purduesigbots.vexflash.menus.uploadPreserveCommand"
+                     label="Upload Preserving Filesystem"
+                     mnemonic="P"
+                     style="push"
+                     tooltip="Upload project to VEX Cortex, preserving filesystem contents [will be slower]">
+               </command>
+               <command
+                     commandId="com.purduesigbots.vexflash.commands.uploadFileCommand"
+                     icon="icons/upload16.png"
+                     id="com.purduesigbots.vexflash.menus.uploadFileCommand"
+                     label="Read File from Cortex..."
+                     mnemonic="R"
+                     style="push"
+                     tooltip="Copies a file from the VEX Cortex flash memory to this computer">
+               </command>
+               <command
+                     commandId="com.purduesigbots.vexflash.commands.downloadFileCommand"
+                     icon="icons/download16.png"
+                     id="com.purduesigbots.vexflash.menus.downloadFileCommand"
+                     label="Write File to Cortex..."
+                     mnemonic="W"
+                     style="push"
+                     tooltip="Copies a file from this computer to the VEX Cortex flash memory">
+               </command>
+            </menu>
          </menu>
       </menuContribution>
       <menuContribution
@@ -72,11 +133,32 @@
             <command
                   commandId="com.purduesigbots.vexflash.commands.uploadCommand"
                   icon="icons/vcc32.png"
-                  id="com.purduesigbots.vexflash.toolbars.uploadCommand"
-                  label="Upload to Cortex"
-                  tooltip="Upload current project to VEX Cortex">
+                  id="com.purduesigbots.vexflash.toolbars.uploadMenu"
+                  label="Upload Options"
+                  style="pulldown"
+                  tooltip="Upload current project to VEX Cortex [drop-down for more options]">
             </command>
          </toolbar>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:com.purduesigbots.vexflash.toolbars.uploadMenu">
+         <command
+               commandId="com.purduesigbots.vexflash.commands.uploadCommand"
+               icon="icons/vcc32.png"
+               id="com.purduesigbots.vexflash.toolbars.uploadCommand"
+               label="Upload to Cortex"
+               style="push"
+               tooltip="Upload current project to VEX Cortex">
+         </command>
+         <command
+               commandId="com.purduesigbots.vexflash.commands.uploadPreserveCommand"
+               icon="icons/vcc32p.png"
+               id="com.purduesigbots.vexflash.toolbars.uploadPreserveCommand"
+               label="Upload Preserving Filesystem"
+               style="push"
+               tooltip="Upload project to VEX Cortex, preserving filesystem contents [will be slower]">
+         </command>
       </menuContribution>
    </extension>
 

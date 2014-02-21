@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PROS Project Manager and Update
 Bundle-SymbolicName: com.purduesigbots.newcortexproject;singleton:=true
-Bundle-Version: 1.0.0.6
+Bundle-Version: 1.0.0.7
 Bundle-Activator: com.purduesigbots.newcortexproject.Activator
 Bundle-Vendor: Purdue ACM SIG BOTS
 Require-Bundle: org.eclipse.ui,
