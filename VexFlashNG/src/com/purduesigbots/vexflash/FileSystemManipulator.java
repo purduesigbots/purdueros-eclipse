@@ -102,6 +102,8 @@ public class FileSystemManipulator {
 		final BitSet bitmap = new BitSet(lastPage + 2);
 		final STMDevice dev = state.getDevice();
 		final int size = fileData.length(), ps = dev.getPageSize();
+		// Set a bit at the end of the file system to denote EOS
+		bitmap.set(0, lastPage + 1);
 		// Try to erase the current copy of this file, if it exists
 		final FileEntry entry = lookForFile(name, bitmap);
 		if (entry != null && entry.start >= 0) {
@@ -111,8 +113,6 @@ public class FileSystemManipulator {
 			// Pages are now available, clear the bitset
 			bitmap.clear(entry.start, end);
 		}
-		// Set a bit at the end of the file system to denote EOS
-		bitmap.set(lastPage);
 		// Look for room
 		int end = 0;
 		for (int start = bitmap.nextClearBit(0); start < lastPage;
@@ -223,9 +223,11 @@ public class FileSystemManipulator {
 					// Trim "\0" from the end of name
 					if (idx > 0)
 						name = name.substring(0, idx);
+					final FileEntry fe = new FileEntry(i, len, name, ps);
 					if (len < dev.getFlashSize())
 						// Length is sane, calculate the # of pages this file consumes
-						return new FileEntry(i, len, name, ps);
+						return fe;
+					i += fe.len;
 				}
 			}
 		}

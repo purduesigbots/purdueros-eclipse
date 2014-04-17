@@ -94,6 +94,7 @@ public class VexFlash implements FlashUtility {
 				if (System.currentTimeMillis() - now > (VEX_TIMEOUT - 50L))
 					// Sometimes, the serial port will lock up but not throw an error...
 					throw getNotRespondingException(null);
+				Utils.delay(100L);
 			}
 			port.flush();
 		} catch (IOException e) {
@@ -157,7 +158,7 @@ public class VexFlash implements FlashUtility {
 				for (short value : BOOTLOAD)
 					port.write(value & 0xFF);
 				port.flush();
-				Utils.delay(50);
+				Utils.delay(150L);
 			}
 		} catch (Exception e) {
 			throw new SerialException("Failed to initialize controller", e);
@@ -196,15 +197,16 @@ public class VexFlash implements FlashUtility {
 		output.messageBegin("Stopping user code");
 		killUserCode(port);
 		output.messageEnd("done.");
-		Utils.delay(50);
+		Utils.delay(100L);
 		// Initialize VEX system
 		output.messageBegin("Interrogating VEX system");
 		getSystemInformation();
 		output.messageEnd("done.");
+		Utils.delay(100L);
 		output.messageBegin("Initializing controller");
 		vexInit(port);
 		output.messageEnd("done.");
-		Utils.delay(400);
+		Utils.delay(400L);
 		// Initialize STM connection
 		stmInit();
 	}
@@ -328,7 +330,7 @@ public class VexFlash implements FlashUtility {
 		output.message("Starting user code");
 		state.commandGO(state.getUserCodeAddress());
 		// No verify, the bootloader has just jumped to user code
-		Utils.delay(100);
+		Utils.delay(100L);
 	}
 	public boolean setup(final UploadParams params) throws SerialException {
 		file = params.getTarget();
