@@ -57,7 +57,7 @@ public class UpdatePROSHandler extends AbstractHandler {
 	 * @param window the current workbench window
 	 * @param mon progress monitor for status updates
 	 */
-	private static void updatePROS(final IWorkbenchWindow window, final IProgressMonitor mon) {
+	private static void updatePROS(final IWorkbenchWindow window, final IProgressMonitor mon) throws FileNotFoundException {
 		final String text;
 		final String prosVersion = CmdLineUpdate.getPROSVersion();
 		// Check for the current project
@@ -130,7 +130,12 @@ public class UpdatePROSHandler extends AbstractHandler {
 		// Run when the button is clicked
 		final UIJob confUpdate = new UIJob("Confirm Update") {
 			public IStatus runInUIThread(final IProgressMonitor mon) {
+				try {
 				updatePROS(window, mon);
+				}
+				catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
 				// Always OK, even if no changes made
 				return Status.OK_STATUS;
 			}

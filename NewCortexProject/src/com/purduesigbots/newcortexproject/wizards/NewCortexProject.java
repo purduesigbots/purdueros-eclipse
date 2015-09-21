@@ -1,17 +1,42 @@
 package com.purduesigbots.newcortexproject.wizards;
 
-import java.io.*;
-import java.lang.reflect.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 
-import org.eclipse.core.resources.*;
-import org.eclipse.core.runtime.*;
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExecutableExtension;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.*;
-import org.eclipse.jface.wizard.*;
-import org.eclipse.ui.*;
-import org.eclipse.ui.actions.*;
-import org.eclipse.ui.dialogs.*;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardContainer;
+import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.ui.INewWizard;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import com.purduesigbots.newcortexproject.CmdLineUpdate;
@@ -76,7 +101,7 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 	 * @param monitor
 	 */
 	private static void createProject(IProjectDescription description, IProject proj,
-			IProgressMonitor monitor) throws CoreException, OperationCanceledException {
+			IProgressMonitor monitor) throws CoreException, OperationCanceledException, FileNotFoundException {
 		try {
 			monitor.beginTask("Creating project", 200);
 			proj.create(description, new SubProgressMonitor(monitor, 100));
@@ -86,18 +111,18 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 			IContainer container = (IContainer) proj;
 			/* Add makefiles */
 			addFileToProject(container, new Path("Makefile"),
-				CmdLineUpdate.openStream("Makefile"), monitor);
+					CmdLineUpdate.openStream("Makefile"), monitor);
 			addFileToProject(container, new Path("common.mk"),
 				CmdLineUpdate.openStream("common.mk"), monitor);
-			addTemplateFile(container, new Path(".cproject"),
-				CmdLineUpdate.openStream(".cproject"), monitor, proj.getName());
-			addTemplateFile(container, new Path(".project"),
-				CmdLineUpdate.openStream(".project"), monitor, proj.getName());
+//			addTemplateFile(container, new Path(".cproject"),
+//				CmdLineUpdate.openStream(".cproject"), monitor,proj.getName());
+//			addTemplateFile(container, new Path(".project"),
+//				CmdLineUpdate.openStream(".project"), monitor, proj.getName());
 			/* Add the firmware, include, src folders */
 			final IFolder fwFolder = container.getFolder(new Path("firmware"));
 			fwFolder.create(true, true, monitor);
 			addFileToProject(container, createPath(fwFolder, "cortex.ld"),
-				CmdLineUpdate.openStream("firmware/cortex.ld"), monitor);
+					CmdLineUpdate.openStream("firmware/cortex.ld"), monitor);
 			addFileToProject(container, createPath(fwFolder, "STM32F10x.ld"),
 				CmdLineUpdate.openStream("firmware/STM32F10x.ld"), monitor);
 			addFileToProject(container, createPath(fwFolder, "libccos.a"),
@@ -122,6 +147,12 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 				CmdLineUpdate.openStream("src/Makefile"), monitor);
 		} catch (OperationCanceledException ignore) {
 			/* Swallow a cancel gracefully */
+		} catch (CoreException e) {
+			throw e;
+		} catch (NullPointerException e) {
+			throw e;
+		} catch (FileNotFoundException e) {
+			throw e;
 		} finally {
 			monitor.done();
 		}
@@ -162,14 +193,17 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 			final IProjectDescription desc = workspace.newProjectDescription(
 				projectHandle.getName());
 			desc.setLocationURI(projectURI);
-			WorkspaceModifyOperation op = new WorkspaceModifyOperation() {
-				protected void execute(IProgressMonitor monitor)
-						throws CoreException {
-					createProject(desc, projectHandle, monitor);
-				}
-			};
 			try {
-				getContainer().run(true, true, op);
+				IWizardContainer containter = getContainer();
+				containter.run(true, true, new WorkspaceModifyOperation() { 
+					protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException {
+						try {
+							createProject(desc, projectHandle, monitor);
+						} catch (FileNotFoundException e) {
+							throw new InvocationTargetException(e);
+						}
+					}
+				});
 				BasicNewProjectResourceWizard.updatePerspective(config);
 				BasicNewProjectResourceWizard.selectAndReveal(projectHandle,
 					workbench.getActiveWorkbenchWindow());

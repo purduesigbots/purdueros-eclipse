@@ -65,7 +65,7 @@ public class UpdateChecker implements IStartup {
 	 * @param result the results from the website
 	 * @return the newest version for updates, or null if none available
 	 */
-	private static String runUpdateCheck(final CharSequence result) {
+	private static String runUpdateCheck(final CharSequence result) throws FileNotFoundException {
 		final String ourVersion = CmdLineUpdate.getPROSVersion();
 		String updateVersion = ourVersion;
 		// Are we release?

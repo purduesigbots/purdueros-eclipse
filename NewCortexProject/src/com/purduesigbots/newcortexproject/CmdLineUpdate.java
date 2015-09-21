@@ -20,10 +20,13 @@ public class CmdLineUpdate {
 	private static final Pattern PROS_VERSION = Pattern.compile("PROS " + PROS_VERSION_REGEX);
 	private static String prosVersion = null;
 
-	public static InputStream openStream(String path) {
-		return CmdLineUpdate.class.getResourceAsStream("/sample/" + path);
+	public static InputStream openStream(String path) throws FileNotFoundException {
+		InputStream stream = CmdLineUpdate.class.getResourceAsStream("/sample/" + path);
+		if(stream == null) throw new FileNotFoundException("Could not find the file " + path + " in the sample project directory.");
+		return stream;
+		
 	}
-	private static void updatePROSVersion() {
+	private static void updatePROSVersion() throws FileNotFoundException {
 		// Read in the PROS binary and look for "PROS XXXX"
 		final InputStream is = openStream("firmware/libccos.a");
 		// Yes, this might garble binary characters. No, it doesn't matter in this case.
@@ -54,13 +57,13 @@ public class CmdLineUpdate {
 	 * 
 	 * @return the PROS version, or "" if not able to determine
 	 */
-	public static synchronized String getPROSVersion() {
+	public static synchronized String getPROSVersion() throws FileNotFoundException {
 		if (prosVersion == null)
 			updatePROSVersion();
 		return prosVersion;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		final String v = getPROSVersion();
 		if (args.length < 1) {
 			// No arguments entered?

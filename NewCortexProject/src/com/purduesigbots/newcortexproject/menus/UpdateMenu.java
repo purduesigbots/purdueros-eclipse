@@ -1,5 +1,7 @@
 package com.purduesigbots.newcortexproject.menus;
 
+import java.io.FileNotFoundException;
+
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
@@ -14,7 +16,7 @@ import com.purduesigbots.newcortexproject.CmdLineUpdate;
 public class UpdateMenu extends CompoundContributionItem {
 	private final CommandContributionItemParameter params;
 
-	public UpdateMenu() {
+	public UpdateMenu() throws FileNotFoundException {
 		// Generate button up front
 		final ImageDescriptor updateImg = ImageDescriptor.createFromURL(
 			getClass().getResource("/icons/update.png"));
