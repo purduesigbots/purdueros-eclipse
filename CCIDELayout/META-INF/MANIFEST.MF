@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vex Cortex/PROS Perspective
-Bundle-SymbolicName: com.purduesigbots.perspective;singleton:=true
+Bundle-SymbolicName: edu.purdue.sigbots.ros.eclipse.perspective;singleton:=true
 Bundle-Version: 1.0.0.3
 Bundle-Activator: com.purduesigbots.perspective.Activator
 Bundle-Vendor: Purdue ACM SIG BOTS
@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.console,
  org.eclipse.cdt;bundle-version="8.7.0",
- com.purduesigbots.newcortexproject;bundle-version="1.0.0.3",
- com.purduesigbots.vexflash;bundle-version="1.0.0.3"
+ edu.purdue.sigbots.ros.eclipse.flashutil;bundle-version="1.0.0",
+ edu.purdue.sigbots.ros.eclipse.manager;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
