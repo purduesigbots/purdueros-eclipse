@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: PROS Cortex Flash Utility
 Bundle-SymbolicName: edu.purdue.sigbots.ros.eclipse.flashutil;singleton:=true
 Bundle-Version: 1.0.0.6
-Bundle-Activator: com.purduesigbots.vexflash.Activator
+Bundle-Activator: edu.purdue.sigbots.ros.eclipse.flashutil.Activator
 Bundle-Vendor: Purdue ACM SIG BOTS
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

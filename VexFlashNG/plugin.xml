@@ -6,61 +6,61 @@
          point="org.eclipse.ui.commands">
       <category
             name="VEX Commands"
-            id="com.purduesigbots.vexflash.commands.category">
+            id="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category">
       </category>
       <command
             name="Upload to Cortex"
-            categoryId="com.purduesigbots.vexflash.commands.category"
-            id="com.purduesigbots.vexflash.commands.uploadCommand">
+            categoryId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category"
+            id="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadCommand">
       </command>
       <command
-            categoryId="com.purduesigbots.vexflash.commands.category"
-            id="com.purduesigbots.vexflash.commands.firmwareCommand"
+            categoryId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category"
+            id="edu.purdue.sigbots.ros.eclipse.vexflash.commands.firmwareCommand"
             name="Update Mastercode">
       </command>
       <command
-            categoryId="com.purduesigbots.vexflash.commands.category"
-            id="com.purduesigbots.vexflash.commands.uploadPreserveCommand"
+            categoryId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category"
+            id="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadPreserveCommand"
             name="Upload Preserving Filesystem">
       </command>
       <command
-            categoryId="com.purduesigbots.vexflash.commands.category"
-            id="com.purduesigbots.vexflash.commands.downloadFileCommand"
+            categoryId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category"
+            id="edu.purdue.sigbots.ros.eclipse.vexflash.commands.downloadFileCommand"
             name="Save File to Cortex">
       </command>
       <command
-            categoryId="com.purduesigbots.vexflash.commands.category"
-            id="com.purduesigbots.vexflash.commands.uploadFileCommand"
+            categoryId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category"
+            id="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadFileCommand"
             name="Read File from Cortex">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            commandId="com.purduesigbots.vexflash.commands.uploadCommand"
-            class="com.purduesigbots.vexflash.handlers.VexUploadHandler">
+            commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadCommand"
+            class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexUploadHandler">
       </handler>
       <handler
-            class="com.purduesigbots.vexflash.handlers.VexFirmwareHandler"
-            commandId="com.purduesigbots.vexflash.commands.firmwareCommand">
+            class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexFirmwareHandler"
+            commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.firmwareCommand">
       </handler>
       <handler
-            class="com.purduesigbots.vexflash.handlers.VexUploadHandler"
-            commandId="com.purduesigbots.vexflash.commands.uploadPreserveCommand">
+            class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexUploadHandler"
+            commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadPreserveCommand">
       </handler>
       <handler
-            class="com.purduesigbots.vexflash.handlers.VexUploadHandler"
-            commandId="com.purduesigbots.vexflash.commands.uploadFileCommand">
+            class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexUploadHandler"
+            commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadFileCommand">
       </handler>
       <handler
-            class="com.purduesigbots.vexflash.handlers.VexUploadHandler"
-            commandId="com.purduesigbots.vexflash.commands.downloadFileCommand">
+            class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexUploadHandler"
+            commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.downloadFileCommand">
       </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="com.purduesigbots.vexflash.commands.uploadCommand"
+            commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadCommand"
             contextId="org.eclipse.ui.contexts.window"
             sequence="F7"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
@@ -73,50 +73,50 @@
          <menu
                label="VEX"
                mnemonic="V"
-               id="com.purduesigbots.vexflash.menus.vexMenu">
+               id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.vexMenu">
             <command
-                  commandId="com.purduesigbots.vexflash.commands.uploadCommand"
+                  commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadCommand"
                   icon="icons/vcc32.png"
-                  id="com.purduesigbots.vexflash.menus.uploadCommand"
+                  id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.uploadCommand"
                   label="Upload to Cortex"
                   mnemonic="U"
                   style="push"
                   tooltip="Upload current project to VEX Cortex">
             </command>
             <command
-                  commandId="com.purduesigbots.vexflash.commands.firmwareCommand"
-                  id="com.purduesigbots.vexflash.menus.firmwareCommand"
+                  commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.firmwareCommand"
+                  id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.firmwareCommand"
                   label="Update Mastercode..."
                   style="push"
                   tooltip="Launch VEXnet Firmware Upgrade Utility">
             </command>
             <menu
-                  id="com.purduesigbots.vexflash.menus.filesystemMenu"
+                  id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.filesystemMenu"
                   label="File System"
                   mnemonic="F"
                   tooltip="Commands for manipulating the PROS File System, for advanced users">
                <command
-                     commandId="com.purduesigbots.vexflash.commands.uploadPreserveCommand"
+                     commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadPreserveCommand"
                      icon="icons/vcc32p.png"
-                     id="com.purduesigbots.vexflash.menus.uploadPreserveCommand"
+                     id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.uploadPreserveCommand"
                      label="Upload Preserving Filesystem"
                      mnemonic="P"
                      style="push"
                      tooltip="Upload project to VEX Cortex, preserving filesystem contents [will be slower]">
                </command>
                <command
-                     commandId="com.purduesigbots.vexflash.commands.uploadFileCommand"
+                     commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadFileCommand"
                      icon="icons/upload16.png"
-                     id="com.purduesigbots.vexflash.menus.uploadFileCommand"
+                     id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.uploadFileCommand"
                      label="Read File from Cortex..."
                      mnemonic="R"
                      style="push"
                      tooltip="Copies a file from the VEX Cortex flash memory to this computer">
                </command>
                <command
-                     commandId="com.purduesigbots.vexflash.commands.downloadFileCommand"
+                     commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.downloadFileCommand"
                      icon="icons/download16.png"
-                     id="com.purduesigbots.vexflash.menus.downloadFileCommand"
+                     id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.downloadFileCommand"
                      label="Write File to Cortex..."
                      mnemonic="W"
                      style="push"
@@ -128,12 +128,12 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
          <toolbar
-               id="com.purduesigbots.vexflash.toolbars.sampleToolbar"
+               id="edu.purdue.sigbots.ros.eclipse.vexflash.toolbars.sampleToolbar"
                label="Upload Toolbar">
             <command
-                  commandId="com.purduesigbots.vexflash.commands.uploadCommand"
+                  commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadCommand"
                   icon="icons/vcc32.png"
-                  id="com.purduesigbots.vexflash.toolbars.uploadMenu"
+                  id="edu.purdue.sigbots.ros.eclipse.vexflash.toolbars.uploadMenu"
                   label="Upload Options"
                   style="pulldown"
                   tooltip="Upload current project to VEX Cortex [drop-down for more options]">
@@ -142,19 +142,19 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="menu:com.purduesigbots.vexflash.toolbars.uploadMenu">
+            locationURI="menu:edu.purdue.sigbots.ros.eclipse.vexflash.toolbars.uploadMenu">
          <command
-               commandId="com.purduesigbots.vexflash.commands.uploadCommand"
+               commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadCommand"
                icon="icons/vcc32.png"
-               id="com.purduesigbots.vexflash.toolbars.uploadCommand"
+               id="edu.purdue.sigbots.ros.eclipse.vexflash.toolbars.uploadCommand"
                label="Upload to Cortex"
                style="push"
                tooltip="Upload current project to VEX Cortex">
          </command>
          <command
-               commandId="com.purduesigbots.vexflash.commands.uploadPreserveCommand"
+               commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadPreserveCommand"
                icon="icons/vcc32p.png"
-               id="com.purduesigbots.vexflash.toolbars.uploadPreserveCommand"
+               id="edu.purdue.sigbots.ros.eclipse.vexflash.toolbars.uploadPreserveCommand"
                label="Upload Preserving Filesystem"
                style="push"
                tooltip="Upload project to VEX Cortex, preserving filesystem contents [will be slower]">

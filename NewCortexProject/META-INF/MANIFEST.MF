@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: PROS Project Manager and Update
 Bundle-SymbolicName: edu.purdue.sigbots.ros.eclipse.manager;singleton:=true
 Bundle-Version: 1.0.0.8
-Bundle-Activator: com.purduesigbots.newcortexproject.Activator
+Bundle-Activator: edu.purdue.sigbots.ros.eclipse.manager.Activator
 Bundle-Vendor: Purdue ACM SIG BOTS
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
