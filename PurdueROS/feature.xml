@@ -2,7 +2,7 @@
 <feature
       id="edu.purdue.sigbots.ros.eclipse.feature"
       label="Purdue Robotics Operating System"
-      version="1.5.0.0"
+      version="1.5.1.0"
       provider-name="Purdue ACM SIG BOTS">
 
    <description>
