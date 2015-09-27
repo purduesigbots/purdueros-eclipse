@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.0.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.0">
-      <category name="Purdue Robotics Operating System"/>
+      <category name="edu.purdue.sigbots.purdueros"/>
    </feature>
-   <category-def name="Purdue Robotics Operating System" label="Purdue Robotics Operating System"/>
+   <category-def name="edu.purdue.sigbots.purdueros" label="Purdue Robotics Operating System"/>
 </site>
