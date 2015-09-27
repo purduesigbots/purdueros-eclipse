@@ -2,7 +2,7 @@
 <feature
       id="edu.purdue.sigbots.purdueros.eclipse.feature"
       label="Purdue Robotics Operation System"
-      version="1.5.1.0"
+      version="1.5.1.4"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
