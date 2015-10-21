@@ -156,7 +156,8 @@ public class PortFinder {
 								break;
 							}
 						}
-				}
+						
+				} 
 			} catch (Win32Exception ignore) { }
 	}
 	/**
