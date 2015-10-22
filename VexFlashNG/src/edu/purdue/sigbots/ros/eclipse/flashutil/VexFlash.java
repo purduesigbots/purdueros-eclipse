@@ -5,13 +5,15 @@ import java.io.*;
 import java.util.*;
 
 /**
- * VEX Flash program, loosely based off of stm32flash (http://stm32flash.googlecode.com/)
+ * VEX Flash program, loosely based off of stm32flash
+ * (http://stm32flash.googlecode.com/)
  *
  * Reflashes a Vex Cortex microcontroller with user code.
  */
 public class VexFlash implements FlashUtility {
 	/**
-	 * Default baud rate to use for flashing. At present this can't be changed at runtime.
+	 * Default baud rate to use for flashing. At present this can't be changed
+	 * at runtime.
 	 */
 	public static final int BAUD = 115200;
 	/**
@@ -19,28 +21,33 @@ public class VexFlash implements FlashUtility {
 	 */
 	public static final int FS_START = 128 * 1024;
 	/**
-	 * Sequence to send to the VexNET system to reset Cortex into bootloader mode.
+	 * Sequence to send to the VexNET system to reset Cortex into bootloader
+	 * mode.
 	 */
 	private static final short[] BOOTLOAD = { 0xC9, 0x36, 0xB8, 0x47, 0x25 };
 	/**
-	 * Sequence to send to the VexNET system to kill user code and return to firmware.
+	 * Sequence to send to the VexNET system to kill user code and return to
+	 * firmware.
 	 */
-	private static final short[] STOP_USER_CODE = { 0x0F, 0x0F, 0x21, 0xDE, 0x08, 0x00, 0x00,
-		0x00, 0x08, 0xF1, 0x04 };
+	private static final short[] STOP_USER_CODE = { 0x0F, 0x0F, 0x21, 0xDE, 0x08, 0x00, 0x00, 0x00, 0x08, 0xF1, 0x04 };
 	/**
-	 * Asks for system information to determine the power levels and connection type
+	 * Asks for system information to determine the power levels and connection
+	 * type
 	 */
 	private static final short[] SYSINFO = { 0xC9, 0x36, 0xB8, 0x47, 0x21 };
 	/**
-	 * The timeout value in milliseconds used on the serial port while uploading.
+	 * The timeout value in milliseconds used on the serial port while
+	 * uploading.
 	 */
 	public static final long VEX_TIMEOUT = 700L;
 
 	/**
 	 * Asks the Cortex/joystick for the current status.
 	 *
-	 * @param port the serial port to use
-	 * @throws SerialException if an I/O error occurs
+	 * @param port
+	 *            the serial port to use
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private static void askSysInfo(final SerialPortIO port) throws SerialException {
 		try {
@@ -52,36 +59,43 @@ public class VexFlash implements FlashUtility {
 			throw getNotRespondingException(e);
 		}
 	}
+
 	/**
 	 * Factory method for generic Cortex not responding message.
 	 * 
-	 * @param cause the cause of this error
+	 * @param cause
+	 *            the cause of this error
 	 * @return the error text
 	 */
 	private static SerialException getNotRespondingException(final IOException cause) {
-		return new SerialException("The VEX Joystick or VEX Cortex is not responding.\n" +
-			"Ensure that the VEX Programming Kit or USB tether is tightly connected and " +
-			"that the VEX devices are powered on.", cause);
+		return new SerialException("The VEX Joystick or VEX Cortex is not responding.\n"
+				+ "Ensure that the VEX Programming Kit or USB tether is tightly connected and "
+				+ "that the VEX devices are powered on.", cause);
 	}
+
 	/**
 	 * Factory method for generic port in use message.
 	 * 
-	 * @param bad the port that is closed
-	 * @param cause the cause of this error
+	 * @param bad
+	 *            the port that is closed
+	 * @param cause
+	 *            the cause of this error
 	 * @return the error text
 	 */
-	private static SerialException getPortLockedException(final String bad,
-			final Exception cause) {
-		return new SerialException("The selected communications port cannot be opened.\n" +
-			"Close any terminal emulators or competition switch simulators which are " +
-			"using " + bad + ", and ensure that the current user has the required " +
-			"permissions to use serial devices.\n", cause);
+	private static SerialException getPortLockedException(final String bad, final Exception cause) {
+		return new SerialException("The selected communications port cannot be opened.\n"
+				+ "Close any terminal emulators or competition switch simulators which are " + "using " + bad
+				+ ", and ensure that the current user has the required " + "permissions to use serial devices.\n",
+				cause);
 	}
+
 	/**
 	 * Kills the currently running user code.
 	 *
-	 * @param port the serial port to use
-	 * @throws SerialException if an I/O error occurs
+	 * @param port
+	 *            the serial port to use
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private static void killUserCode(final SerialPortIO port) throws SerialException {
 		long now;
@@ -92,7 +106,8 @@ public class VexFlash implements FlashUtility {
 				now = System.currentTimeMillis();
 				port.write(value & 0xFF);
 				if (System.currentTimeMillis() - now > (VEX_TIMEOUT - 50L))
-					// Sometimes, the serial port will lock up but not throw an error...
+					// Sometimes, the serial port will lock up but not throw an
+					// error...
 					throw getNotRespondingException(null);
 				Utils.delay(100L);
 			}
@@ -101,11 +116,14 @@ public class VexFlash implements FlashUtility {
 			throw getNotRespondingException(e);
 		}
 	}
+
 	/**
 	 * Sets up the port for no parity and the default data rate.
 	 *
-	 * @param port the port to use
-	 * @throws SerialException if an I/O error occurs
+	 * @param port
+	 *            the port to use
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private static void parityNone(final SerialPortIO port) throws SerialException {
 		try {
@@ -116,11 +134,14 @@ public class VexFlash implements FlashUtility {
 			throw getPortLockedException(port.getName(), e);
 		}
 	}
+
 	/**
 	 * Sets up the port for STM even parity and data rate.
 	 *
-	 * @param port the port to use
-	 * @throws SerialException if an I/O error occurs
+	 * @param port
+	 *            the port to use
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private static void paritySTM(final SerialPortIO port) throws SerialException {
 		try {
@@ -131,10 +152,12 @@ public class VexFlash implements FlashUtility {
 			throw getPortLockedException(port.getName(), e);
 		}
 	}
+
 	/**
 	 * Returns VexNET into terminal mode.
 	 *
-	 * @param port the serial port to use
+	 * @param port
+	 *            the serial port to use
 	 */
 	private static void resetVexNET(final SerialPortIO port) {
 		try {
@@ -142,13 +165,17 @@ public class VexFlash implements FlashUtility {
 			// Put VexNET into terminal mode
 			port.write(20);
 			port.flush();
-		} catch (Exception ignore) { }
+		} catch (Exception ignore) {
+		}
 	}
+
 	/**
 	 * Initializes VexNET to prepare a Cortex communication.
 	 *
-	 * @param port the serial port to use
-	 * @throws SerialException if an I/O error occurs
+	 * @param port
+	 *            the serial port to use
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private static void vexInit(final SerialPortIO port) throws SerialException {
 		try {
@@ -170,7 +197,8 @@ public class VexFlash implements FlashUtility {
 	 */
 	private Parser fileData;
 	/**
-	 * The input (output) file, used for FS upload/download to get the target name.
+	 * The input (output) file, used for FS upload/download to get the target
+	 * name.
 	 */
 	private File file;
 	/**
@@ -189,8 +217,10 @@ public class VexFlash implements FlashUtility {
 	/**
 	 * Waits for reset and reconnects.
 	 *
-	 * @param output the indicator for status messages
-	 * @throws SerialException if an I/O error occurs
+	 * @param output
+	 *            the indicator for status messages
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private void connect(final Indicator output) throws SerialException {
 		// Kill user code
@@ -210,17 +240,21 @@ public class VexFlash implements FlashUtility {
 		// Initialize STM connection
 		stmInit();
 	}
+
 	public void end() {
 		if (fileData != null)
 			fileData.close();
 		if (port != null)
 			port.close();
 	}
+
 	/**
 	 * Erases the Cortex memory.
 	 *
-	 * @param output the indicator for status messages
-	 * @throws SerialException if an I/O error occurs
+	 * @param output
+	 *            the indicator for status messages
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private void eraseAll(final Indicator output) throws SerialException {
 		output.messageBegin("Erasing memory");
@@ -228,29 +262,37 @@ public class VexFlash implements FlashUtility {
 		output.messageEnd("done.");
 		Utils.delay(100);
 	}
+
 	/**
-	 * Erases the first few pages of Cortex flash memory (all pages before FS_START)
+	 * Erases the first few pages of Cortex flash memory (all pages before
+	 * FS_START)
 	 *
-	 * @param fs the file system manipulator pointing to the port
-	 * @param output the indicator for status messages
-	 * @throws SerialException if an I/O error occurs
+	 * @param fs
+	 *            the file system manipulator pointing to the port
+	 * @param output
+	 *            the indicator for status messages
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
-	private void eraseSome(final FileSystemManipulator fs, final Indicator output)
-			throws SerialException {
+	private void eraseSome(final FileSystemManipulator fs, final Indicator output) throws SerialException {
 		output.messageBegin("Erasing memory");
 		// Order FS to erase the pages
 		fs.eraseRange(0, FS_START / state.getDevice().getPageSize() - 1);
 		output.messageEnd("done.");
 		Utils.delay(100);
 	}
+
 	public String getExtension() {
 		return "bin";
 	}
+
 	/**
-	 * Gets information from the Cortex to determine its connection type and power level.
-	 * Currently, the data is ignored, but it will be displayed once the meaning is known.
+	 * Gets information from the Cortex to determine its connection type and
+	 * power level. Currently, the data is ignored, but it will be displayed
+	 * once the meaning is known.
 	 *
-	 * @throws SerialException if an I/O error occurs
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private void getSystemInformation() throws SerialException {
 		try {
@@ -260,6 +302,7 @@ public class VexFlash implements FlashUtility {
 			throw getNotRespondingException(e);
 		}
 	}
+
 	public List<PortFinder.Serial> locateSerial() {
 		final List<PortFinder.Serial> candidates = new ArrayList<PortFinder.Serial>(8);
 		try {
@@ -272,14 +315,15 @@ public class VexFlash implements FlashUtility {
 			candidates.clear();
 			candidates.addAll(PortFinder.defaultPortList());
 			// Delete elements with "btcomm" or "ttyS" in the name for Mac
-			for (final Iterator<PortFinder.Serial> it = candidates.iterator(); it.hasNext(); ) {
+			for (final Iterator<PortFinder.Serial> it = candidates.iterator(); it.hasNext();) {
 				String s = it.next().getName();
-				if (s != null && (s = s.toLowerCase()).indexOf("btcomm") >= 0 &&
-					s.indexOf("ttys") >= 0) it.remove();
+				if (s != null && (s = s.toLowerCase()).indexOf("btcomm") >= 0 && s.indexOf("ttys") >= 0)
+					it.remove();
 			}
 		}
 		return candidates;
 	}
+
 	public void program(final Indicator output) throws SerialException {
 		connect(output);
 		final FileSystemManipulator fs = new FileSystemManipulator(state);
@@ -309,22 +353,26 @@ public class VexFlash implements FlashUtility {
 			}
 		} catch (IOException e) {
 			// This occurs on local FS errors only
-			throw new SerialException("Could not read or write file on local computer.\n" +
-				"Ensure that the selected file or directory is accessible by this user.", e);
+			throw new SerialException("Could not read or write file on local computer.\n"
+					+ "Ensure that the selected file or directory is accessible by this user.", e);
 		} finally {
 			// Make sure that VEXnet enters terminal mode
 			restartCode(output);
 			resetVexNET(port);
 		}
 	}
+
 	public boolean requiresSerial() {
 		return true;
 	}
+
 	/**
 	 * Restarts the user code.
 	 *
-	 * @param output the indicator for status messages
-	 * @throws SerialException if an I/O error occurs
+	 * @param output
+	 *            the indicator for status messages
+	 * @throws SerialException
+	 *             if an I/O error occurs
 	 */
 	private void restartCode(final Indicator output) throws SerialException {
 		output.message("Starting user code");
@@ -332,6 +380,7 @@ public class VexFlash implements FlashUtility {
 		// No verify, the bootloader has just jumped to user code
 		Utils.delay(100L);
 	}
+
 	public boolean setup(final UploadParams params) throws SerialException {
 		file = params.getTarget();
 		mode = params.getOperation();
@@ -355,10 +404,12 @@ public class VexFlash implements FlashUtility {
 		}
 		return true;
 	}
+
 	/**
 	 * Initializes the Cortex connection.
 	 *
-	 * @throws SerialException if an I/O error occurs during initialization
+	 * @throws SerialException
+	 *             if an I/O error occurs during initialization
 	 */
 	private void stmInit() throws SerialException {
 		// Switch to STM even parity
@@ -373,9 +424,9 @@ public class VexFlash implements FlashUtility {
 			state.commandGID();
 		} catch (SerialException e) {
 			// Failed to init
-			throw new SerialException("The VEX Cortex is not responding to initialization.\n" +
-				"Ensure that the USB Tether cable or VEXnet keys are tightly plugged in,\n" +
-				"and that all VEX devices are powered on.", e);
+			throw new SerialException("The VEX Cortex is not responding to initialization.\n"
+					+ "Ensure that the USB Tether cable or VEXnet keys are tightly plugged in,\n"
+					+ "and that all VEX devices are powered on.", e);
 		}
 	}
 }
