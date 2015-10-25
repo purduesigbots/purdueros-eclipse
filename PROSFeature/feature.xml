@@ -2,7 +2,7 @@
 <feature
       id="edu.purdue.sigbots.purdueros.eclipse.feature"
       label="Purdue Robotics Operation System"
-      version="1.5.1.4"
+      version="1.5.1.6"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
@@ -32,7 +32,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
    </license>
 
    <url>
-      <discovery label="PROS Documentation" url="http://purdueros.sourceforge.net/doc/"/>
+      <update label="PROS" url="https://raw.githubusercontent.com/purduesigbots/purdueros-eclipse/master/update-site/site.xml"/>
    </url>
 
    <requires>
@@ -45,6 +45,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.cdt" version="8.6.0" match="greaterOrEqual"/>
       <import plugin="edu.purdue.sigbots.ros.eclipse.manager" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.tm.terminal.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
+      <import feature="org.eclipse.tm.terminal.view.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
    </requires>
 
    <plugin
