@@ -41,10 +41,6 @@
             class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexUploadHandler">
       </handler>
       <handler
-            class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexFirmwareHandler"
-            commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.firmwareCommand">
-      </handler>
-      <handler
             class="edu.purdue.sigbots.ros.eclipse.flashutil.handlers.VexUploadHandler"
             commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.uploadPreserveCommand">
       </handler>
@@ -82,13 +78,6 @@
                   mnemonic="U"
                   style="push"
                   tooltip="Upload current project to VEX Cortex">
-            </command>
-            <command
-                  commandId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.firmwareCommand"
-                  id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.firmwareCommand"
-                  label="Update Mastercode..."
-                  style="push"
-                  tooltip="Launch VEXnet Firmware Upgrade Utility">
             </command>
             <menu
                   id="edu.purdue.sigbots.ros.eclipse.vexflash.menus.filesystemMenu"
