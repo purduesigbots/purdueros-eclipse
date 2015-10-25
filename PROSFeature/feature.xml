@@ -2,7 +2,7 @@
 <feature
       id="edu.purdue.sigbots.purdueros.eclipse.feature"
       label="Purdue Robotics Operation System"
-      version="1.5.1.5"
+      version="1.5.1.6"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
@@ -31,6 +31,10 @@ Neither the name of Purdue University ACM SIG BOTS nor the names of its contribu
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PURDUE UNIVERSITY ACM SIG BOTS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    </license>
 
+   <url>
+      <update label="PROS" url="https://raw.githubusercontent.com/purduesigbots/purdueros-eclipse/master/update-site/site.xml"/>
+   </url>
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
@@ -41,6 +45,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.cdt" version="8.6.0" match="greaterOrEqual"/>
       <import plugin="edu.purdue.sigbots.ros.eclipse.manager" version="1.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.tm.terminal.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
+      <import feature="org.eclipse.tm.terminal.view.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
    </requires>
 
    <plugin

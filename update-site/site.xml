@@ -15,5 +15,8 @@
    <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.5.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.5">
       <category name="edu.purdue.sigbots.purdueros"/>
    </feature>
+   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.6.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.6">
+      <category name="edu.purdue.sigbots.purdueros"/>
+   </feature>
    <category-def name="edu.purdue.sigbots.purdueros" label="Purdue Robotics Operating System"/>
 </site>
