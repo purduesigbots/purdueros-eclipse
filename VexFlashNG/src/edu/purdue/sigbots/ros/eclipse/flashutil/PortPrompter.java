@@ -1,6 +1,6 @@
 package edu.purdue.sigbots.ros.eclipse.flashutil;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * A per-flasher class managing saved serial ports.
