@@ -7,7 +7,7 @@ import org.eclipse.swt.program.*;
  * Displays the online documentation for PROS.
  */
 public class DocHandler extends AbstractHandler {
-	public static final String DOC_URL = "http://purdueros.sourceforge.net/doc";
+	public static final String DOC_URL = "http://purduesigbots.github.io/purdueros";
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Program.launch(DOC_URL);

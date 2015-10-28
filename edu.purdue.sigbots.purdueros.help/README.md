@@ -1,0 +1,1 @@
+To update documentation in the future, generate documentation using Doxygen and flag GENERATE_ECLIPSEHELP and the ECLIPSE_DOC_ID is edu.purdue.sigbots.purdueros.help. Copy the entire HTML folder into this plugin's html folder. Compile and run!
