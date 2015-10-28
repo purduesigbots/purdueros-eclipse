@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['task_5fdead',['TASK_DEAD',['../a00002.htm#a13a05b7bdcbd07423a04bfb4cc6759b3',1,'API.h']]],
+  ['task_5fdefault_5fstack_5fsize',['TASK_DEFAULT_STACK_SIZE',['../a00002.htm#a51827b6505ae59fb2ddf9d32e5519ab4',1,'API.h']]],
+  ['task_5fmax',['TASK_MAX',['../a00002.htm#a36bb10267dd6269cfdb231d9e98b5794',1,'API.h']]],
+  ['task_5fmax_5fpriorities',['TASK_MAX_PRIORITIES',['../a00002.htm#ad896f092de28df06fbcdcf925a933996',1,'API.h']]],
+  ['task_5fminimal_5fstack_5fsize',['TASK_MINIMAL_STACK_SIZE',['../a00002.htm#ac6f33c920771bc599d55765a5a6e62c7',1,'API.h']]],
+  ['task_5fpriority_5fdefault',['TASK_PRIORITY_DEFAULT',['../a00002.htm#a3082a7e8f15691441dba683711bb823f',1,'API.h']]],
+  ['task_5fpriority_5fhighest',['TASK_PRIORITY_HIGHEST',['../a00002.htm#a1b3cef27c58c5cac78f170c90dbf7a89',1,'API.h']]],
+  ['task_5fpriority_5flowest',['TASK_PRIORITY_LOWEST',['../a00002.htm#aa494e6c8001ab827484775bfd5c0fe9d',1,'API.h']]],
+  ['task_5frunnable',['TASK_RUNNABLE',['../a00002.htm#a9dbd080b9c7d79b61e865717bc06306c',1,'API.h']]],
+  ['task_5frunning',['TASK_RUNNING',['../a00002.htm#a17e3f99a030e5dfefb8f9815600e3fed',1,'API.h']]],
+  ['task_5fsleeping',['TASK_SLEEPING',['../a00002.htm#a1fa55559982d06fb5f1b3f2fbf5814e5',1,'API.h']]],
+  ['task_5fsuspended',['TASK_SUSPENDED',['../a00002.htm#ac90388d86d6cacd27fb13b218daff9ba',1,'API.h']]],
+  ['taskcode',['TaskCode',['../a00002.htm#a6091882b912af8f8a40397034bfed639',1,'API.h']]],
+  ['taskcreate',['taskCreate',['../a00002.htm#abd5e503a273aaf6abf6869ebd76f2d2d',1,'API.h']]],
+  ['taskdelay',['taskDelay',['../a00002.htm#ac89618d0782547d189fe412a9917639b',1,'API.h']]],
+  ['taskdelayuntil',['taskDelayUntil',['../a00002.htm#ae93bc867b1aa4a12d6536a497f1b6869',1,'API.h']]],
+  ['taskdelete',['taskDelete',['../a00002.htm#add3b8d580ea6ef5635c6d9ff88c68612',1,'API.h']]],
+  ['taskgetcount',['taskGetCount',['../a00002.htm#a436fb5636d9a200ecebbb95968de91f6',1,'API.h']]],
+  ['taskgetstate',['taskGetState',['../a00002.htm#a4f805fd479cb4c427e8f4edfa7d55143',1,'API.h']]],
+  ['taskhandle',['TaskHandle',['../a00002.htm#a23dca3c0de10682afb982677ff292f77',1,'API.h']]],
+  ['taskpriorityget',['taskPriorityGet',['../a00002.htm#ae62d015b8280e4c74ad9ee15c7ac790b',1,'API.h']]],
+  ['taskpriorityset',['taskPrioritySet',['../a00002.htm#a91d8f7074c6cb12dfe163df17bdf5540',1,'API.h']]],
+  ['taskresume',['taskResume',['../a00002.htm#afa2a4c5236b32bd9983bf19a4ac0cc23',1,'API.h']]],
+  ['taskrunloop',['taskRunLoop',['../a00002.htm#ab05a241d6d1fd98b1ceb4665db678156',1,'API.h']]],
+  ['tasksuspend',['taskSuspend',['../a00002.htm#ab56a51f337ad1903ad2bbce095744170',1,'API.h']]]
+];
