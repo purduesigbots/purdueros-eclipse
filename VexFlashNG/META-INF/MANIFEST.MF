@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.ui.ide;bundle-version="3.7.0",
  org.eclipse.debug.ui;bundle-version="3.7.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  jna.jar,
