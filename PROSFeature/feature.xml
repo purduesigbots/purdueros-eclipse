@@ -2,11 +2,13 @@
 <feature
       id="edu.purdue.sigbots.purdueros.eclipse.feature"
       label="Purdue Robotics Operation System"
-      version="1.5.1.6"
+      version="1.6.0.0"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+      PROS is a lightweight and fast alternative operating system for the VEX Cortex Microcontroller. It features multitasking, low-level control, and Wiring compatible functions to harness the full power of the Cortex.
+
+The Purdue Robotics Operating System Eclipse feature provides an Eclipse perspective, wizards for creating PROS-based projects, and tools to communicate with the Cortex Microcontroller.
    </description>
 
    <copyright url="http://www.example.com/copyright">
@@ -47,6 +49,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
       <import plugin="edu.purdue.sigbots.ros.eclipse.manager" version="1.0.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.tm.terminal.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
       <import feature="org.eclipse.tm.terminal.view.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.tm.terminal.view.ui" version="4.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

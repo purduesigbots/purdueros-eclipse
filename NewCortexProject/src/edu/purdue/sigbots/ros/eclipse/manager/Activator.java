@@ -4,6 +4,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import edu.purdue.sigbots.ros.eclipse.manager.wizards.NewCortexProject;
+
 /**
  * The activator class controls the plug-in life cycle
  * 
@@ -11,7 +13,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.purduesigbots.newcortexproject";
+	public static final String PLUGIN_ID = NewCortexProject.class.getCanonicalName().toLowerCase();
 	// The shared instance
 	private static Activator plugin;
 

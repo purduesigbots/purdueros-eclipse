@@ -8,12 +8,13 @@ import org.eclipse.ui.console.IConsoleConstants;
 /**
  * Contributes the essential Midnight-C perspective items required for use.
  */
-public class MidnightCPerspective implements IPerspectiveFactory {
+public class PurdueROSPerspective implements IPerspectiveFactory {
+
 	private static final String TERMINAL_VIEW = "org.eclipse.tm.terminal.view.TerminalView";//NON-NLS-1
 
 	private IPageLayout factory;
 
-	public MidnightCPerspective() {
+	public PurdueROSPerspective() {
 		super();
 	}
 
