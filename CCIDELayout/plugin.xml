@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="PROS for VEX Cortex"
+            name="VEX Cortex"
             icon="icons/vcc16.png"
             class="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.PurdueROSPerspective"
             id="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.PROSPerspective">

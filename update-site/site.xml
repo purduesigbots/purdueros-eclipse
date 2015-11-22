@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.0.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.0">
-      <category name="edu.purdue.sigbots.purdueros"/>
+   <feature url="features/edu.purdue.sigbots.ros.eclipse.feature_1.6.0.0.jar" id="edu.purdue.sigbots.ros.eclipse.feature" version="1.6.0.0">
+      <category name="edu.purdue.sigbots.ros.eclipse.category"/>
    </feature>
-   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.2.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.2">
-      <category name="edu.purdue.sigbots.purdueros"/>
-   </feature>
-   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.3.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.3">
-      <category name="edu.purdue.sigbots.purdueros"/>
-   </feature>
-   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.4.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.4">
-      <category name="edu.purdue.sigbots.purdueros"/>
-   </feature>
-   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.5.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.5">
-      <category name="edu.purdue.sigbots.purdueros"/>
-   </feature>
-   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.5.1.6.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.5.1.6">
-      <category name="edu.purdue.sigbots.purdueros"/>
-   </feature>
-   <feature url="features/edu.purdue.sigbots.purdueros.eclipse.feature_1.6.0.0.jar" id="edu.purdue.sigbots.purdueros.eclipse.feature" version="1.6.0.0">
-      <category name="edu.purdue.sigbots.purdueros"/>
-   </feature>
-   <category-def name="edu.purdue.sigbots.purdueros" label="Purdue Robotics Operating System"/>
+   <category-def name="edu.purdue.sigbots.ros.eclipse.category" label="Purdue Robotics Operating System"/>
 </site>

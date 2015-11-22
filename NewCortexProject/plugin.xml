@@ -21,7 +21,7 @@
          point="org.eclipse.ui.commands">
       <command
             name="Switch Project To Version"
-            categoryId="edu.purdue.sigbots.ros.eclipse.flashutil.commands.category"
+            categoryId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category"
             id="edu.purdue.sigbots.ros.eclipse.manager.commands.updateCommand">
       </command>
    </extension>
