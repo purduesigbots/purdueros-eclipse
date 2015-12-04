@@ -2,7 +2,7 @@
 <feature
       id="edu.purdue.sigbots.ros.eclipse.feature"
       label="Purdue Robotics Operation System"
-      version="1.6.0.0"
+      version="1.6.0.qualifier"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
@@ -41,21 +41,25 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
       <update label="Purdue Robotics Operating System" url="https://raw.githubusercontent.com/purduesigbots/purdueros-eclipse/master/update-site/site.xml"/>
    </url>
 
+   <includes
+         id="edu.purdue.sigbots.ros.eclipse.dependencies"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.ui.ide" version="3.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.debug.ui" version="3.7.0" match="greaterOrEqual"/>
-      <import plugin="edu.purdue.sigbots.ros.eclipse.flashutil" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.cdt" version="8.6.0" match="greaterOrEqual"/>
+      <import plugin="edu.purdue.sigbots.ros.eclipse.flashutil" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="edu.purdue.sigbots.ros.eclipse.manager" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.tm.terminal.view.ui" version="4.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.tm.terminal.connector.serial" version="4.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.intro"/>
       <import feature="org.eclipse.tm.terminal.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
       <import feature="org.eclipse.tm.terminal.view.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
-      <import feature="gnu.io.rxtx" version="2.1.7.4_v20071016-7B57e7UAXMAAqGAGf"/>
-      <import plugin="org.eclipse.tm.terminal.connector.serial" version="4.0.0" match="greaterOrEqual"/>
+      <import feature="gnu.io.rxtx" version="2.1.7.3_v20070718-7B57e7TAXMAAqAqGr"/>
    </requires>
 
    <plugin
@@ -74,6 +78,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
 
    <plugin
          id="edu.purdue.sigbots.ros.eclipse.perspective"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.purdue.sigbots.ros.eclipse.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"

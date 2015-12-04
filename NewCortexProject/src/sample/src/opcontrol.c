@@ -29,10 +29,10 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
-void operatorControl() 
-{
+void operatorControl() {
 	while (true)
 	{
-		delay(25);
+		printf("I'm working");
+		delay(500);
 	}
 }

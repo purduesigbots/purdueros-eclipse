@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Vex Cortex/PROS Perspective
 Bundle-SymbolicName: edu.purdue.sigbots.ros.eclipse.perspective;singleton:=true
-Bundle-Version: 1.0.0.4
+Bundle-Version: 1.6.0.qualifier
 Bundle-Activator: edu.purdue.sigbots.ros.eclipse.perspective.Activator
 Bundle-Vendor: Purdue ACM SIG BOTS
 Require-Bundle: org.eclipse.ui,

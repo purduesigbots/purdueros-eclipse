@@ -146,6 +146,12 @@ public class NewCortexProject extends Wizard implements INewWizard, IExecutableE
 				CmdLineUpdate.openStream("src/init.c"), monitor);
 			addFileToProject(container, createPath(srcFolder, "Makefile"),
 				CmdLineUpdate.openStream("src/Makefile"), monitor);
+			final IFolder settingsFolder = container.getFolder(new Path(".settings"));
+			settingsFolder.create(true, true, monitor);
+//			addFileToProject(container, createPath(settingsFolder, "language.settings.xml"),
+//					CmdLineUpdate.openStream(".settings/language.settings.xml"), monitor);
+			addFileToProject(container, createPath(settingsFolder, "org.eclipse.cdt.core.prefs"),
+					CmdLineUpdate.openStream(".settings/org.eclipse.cdt.core.prefs"), monitor);
 		} catch (OperationCanceledException ignore) {
 			/* Swallow a cancel gracefully */
 		} catch (CoreException e) {
