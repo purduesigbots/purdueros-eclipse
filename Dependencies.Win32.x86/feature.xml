@@ -2,7 +2,8 @@
 <feature
       id="edu.purdue.sigbots.ros.eclipse.dependencies.win32.x86"
       label="PROS Dependencies Win32 x86"
-      version="1.6.0.qualifier"
+      version="1.6.0.0"
+      provider-name="Purdue ACM SIGBOTS"
       os="win32"
       arch="x86">
 
@@ -17,5 +18,9 @@
    <license url="http://www.example.com/license">
       [Enter License Description here.]
    </license>
+
+   <url>
+      <update label="PROS" url="https://raw.githubusercontent.com/purduesigbots/purdueros-eclipse/master/update-site/site.xml"/>
+   </url>
 
 </feature>

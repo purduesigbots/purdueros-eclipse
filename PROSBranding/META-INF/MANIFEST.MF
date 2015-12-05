@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PROSBranding
 Bundle-SymbolicName: edu.purdue.sigbots.ros.eclipse.branding;singleton:=true
-Bundle-Version: 1.6.0.qualifier
+Bundle-Version: 1.6.0.0
 Bundle-Activator: prosbranding.Activator
 Bundle-Vendor: Purdue ACM SIGBOTS
 Require-Bundle: org.eclipse.ui,

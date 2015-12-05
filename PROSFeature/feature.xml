@@ -2,7 +2,7 @@
 <feature
       id="edu.purdue.sigbots.ros.eclipse.feature"
       label="Purdue Robotics Operation System"
-      version="1.6.0.qualifier"
+      version="1.6.0.0"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
@@ -38,12 +38,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
    </license>
 
    <url>
-      <update label="Purdue Robotics Operating System" url="https://raw.githubusercontent.com/purduesigbots/purdueros-eclipse/master/update-site/site.xml"/>
+      <update label="PROS" url="https://raw.githubusercontent.com/purduesigbots/purdueros-eclipse/master/update-site/site.xml"/>
    </url>
 
    <includes
-         id="edu.purdue.sigbots.ros.eclipse.dependencies"
-         version="0.0.0"/>
+         id="edu.purdue.sigbots.ros.eclipse.dependencies.win32"
+         version="0.0.0"
+         os="win32"/>
+
+   <includes
+         id="edu.purdue.sigbots.ros.eclipse.dependencies.linux"
+         version="0.0.0"
+         os="linux"/>
 
    <requires>
       <import plugin="org.eclipse.ui"/>

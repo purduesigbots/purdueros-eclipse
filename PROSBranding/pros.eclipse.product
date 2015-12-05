@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="PROS for Eclipse" uid="edu.purdue.sigbots.ros.eclipse.product" id="edu.purdue.sigbots.ros.eclipse.branding.prosproduct" application="org.eclipse.ui.ide.workbench" version="1.6.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="PROS for Eclipse" uid="edu.purdue.sigbots.ros.eclipse.product" id="edu.purdue.sigbots.ros.eclipse.branding.prosproduct" application="org.eclipse.ui.ide.workbench" version="1.6.0.0" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/PROSBranding/icons/pros128.png"/>
@@ -681,7 +681,6 @@ Library.
       <feature id="org.eclipse.equinox.core.sdk"/>
       <feature id="org.eclipse.equinox.executable"/>
       <feature id="org.eclipse.equinox.p2.core.feature"/>
-      <feature id="org.eclipse.equinox.p2.core.feature.source"/>
       <feature id="org.eclipse.equinox.p2.discovery.feature"/>
       <feature id="org.eclipse.equinox.p2.extras.feature"/>
       <feature id="org.eclipse.equinox.p2.extras.feature.source"/>
@@ -716,12 +715,14 @@ Library.
       <feature id="org.eclipse.tm.terminal.feature"/>
       <feature id="org.eclipse.ecf.core.feature"/>
       <feature id="org.eclipse.jgit"/>
-      <feature id="org.eclipse.tm.terminal.connector.remote.feature"/>
-      <feature id="org.eclipse.oomph.p2"/>
-      <feature id="org.eclipse.oomph.setup"/>
-      <feature id="org.eclipse.oomph.setup.core"/>
       <feature id="gnu.io.rxtx"/>
       <feature id="gnu.io.rxtx.sdk"/>
+      <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.win32.x86_64"/>
+      <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.win32.x86"/>
+      <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.linux.x86_64"/>
+      <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.linux.x86"/>
+      <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.linux"/>
+      <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.win32"/>
    </features>
 
    <configurations>
