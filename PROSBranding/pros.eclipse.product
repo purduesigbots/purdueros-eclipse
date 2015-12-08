@@ -59,7 +59,7 @@ plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.300.v20150602-1417
       startupProgressRect="5,275,445,15"
       startupMessageRect="7,252,445,20"
       startupForegroundColor="FFFFFF" />
-   <launcher name="prose">
+   <launcher name="pros">
       <linux icon="/PROSBranding/icons/linux/pros.xpm"/>
       <macosx icon="/PROSBranding/icons/osx/pros.icns"/>
       <solaris/>
@@ -72,7 +72,6 @@ plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.300.v20150602-1417
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
       <macos include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</macos>
-      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.4</windows>
    </vm>
 
    <license>

@@ -1,6 +1,8 @@
 # Universal C Makefile for MCU targets
 # Top-level template file to configure build
 
+MAKE_COMMAND=make
+
 # Makefile for IFI VeX Cortex Microcontroller (STM32F103VD series)
 DEVICE=VexCortex
 # Libraries to include in the link (use -L and -l) e.g. -lm, -lmyLib

@@ -32,7 +32,6 @@
 void operatorControl() {
 	while (true)
 	{
-		printf("I'm working");
-		delay(500);
+		delay(25);
 	}
 }

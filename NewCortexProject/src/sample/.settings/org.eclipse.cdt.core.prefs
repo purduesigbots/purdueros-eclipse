@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
 environment/project/0.1000016543/PATH/delimiter=;
 environment/project/0.1000016543/PATH/operation=replace
-environment/project/0.1000016543/PATH/value=${PROS_TOOLCHAIN}/arm-none-eabi/bin;${PATH}
+environment/project/0.1000016543/PATH/value=${PROS_TOOLCHAIN}/bin;${PATH}
 environment/project/0.1000016543/PROS_TOOLCHAIN/delimiter=;
 environment/project/0.1000016543/PROS_TOOLCHAIN/operation=replace
 environment/project/0.1000016543/PROS_TOOLCHAIN/value=${eclipse_home}/pros-toolchain
