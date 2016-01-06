@@ -59,24 +59,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.cdt" version="8.6.0" match="greaterOrEqual"/>
       <import plugin="edu.purdue.sigbots.ros.eclipse.flashutil" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="edu.purdue.sigbots.ros.eclipse.manager" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.tm.terminal.view.ui" version="4.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.tm.terminal.connector.serial" version="4.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.intro"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.swt"/>
       <import feature="org.eclipse.tm.terminal.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
       <import feature="org.eclipse.tm.terminal.view.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
-      <import feature="gnu.io.rxtx" version="2.1.7.3_v20070718-7B57e7TAXMAAqAqGr"/>
    </requires>
 
    <plugin
          id="edu.purdue.sigbots.ros.eclipse.flashutil"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="edu.purdue.sigbots.ros.eclipse.manager"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -91,6 +85,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
 
    <plugin
          id="edu.purdue.sigbots.ros.eclipse.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.purdue.sigbots.ros.eclipse.wizard"
          download-size="0"
          install-size="0"
          version="0.0.0"

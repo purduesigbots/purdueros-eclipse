@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="edu.purdue.sigbots.ros.eclipse.wizard.preferences.WizardPreferencesPage"
+            id="edu.purdue.sigbots.ros.eclipse.wizard.preferences.WizardPreferencesPage"
+            name="PROS">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="edu.purdue.sigbots.ros.eclipse.wizard.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="edu.purdue.sigbots.ros.eclipse.wizard.category"
+            name="VEX Cortex">
+      </category>
+      <wizard
+            canFinishEarly="false"
+            category="edu.purdue.sigbots.ros.eclipse.wizard.category"
+            class="edu.purdue.sigbots.ros.eclipse.wizard.newproject.ProjectWizard"
+            finalPerspective="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.PROSPerspective"
+            hasPages="true"
+            icon="icons/pros16.png"
+            id="edu.purdue.sigbots.ros.eclipse.wizard.newproject"
+            name="VEX Cortex PROS Project"
+            project="true">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="edu.purdue.sigbots.ros.eclipse.vexflash.commands.category"
+            defaultHandler="edu.purdue.sigbots.ros.eclipse.wizard.commands.UpgradeProjectCommand"
+            id="edu.purdue.sigbots.ros.eclipse.wizard.commands.updateCommand"
+            name="Upgrade PROS Project">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="edu.purdue.sigbots.ros.eclipse.wizard.commands.UpgradeProjectCommand"
+            commandId="edu.purdue.sigbots.ros.eclipse.wizard.commands.updateCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:edu.purdue.sigbots.ros.eclipse.vexflash.menus.vexMenu?after=edu.purdue.sigbots.ros.eclipse.vexflash.menus.filesystemMenu">
+         <command
+               commandId="edu.purdue.sigbots.ros.eclipse.wizard.commands.updateCommand"
+               label="Upgrade PROS Project"
+               mnemonic="U"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

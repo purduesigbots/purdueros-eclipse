@@ -680,13 +680,9 @@ Library.
       <feature id="org.eclipse.equinox.core.sdk"/>
       <feature id="org.eclipse.equinox.executable"/>
       <feature id="org.eclipse.equinox.p2.core.feature"/>
-      <feature id="org.eclipse.equinox.p2.discovery.feature"/>
       <feature id="org.eclipse.equinox.p2.extras.feature"/>
-      <feature id="org.eclipse.equinox.p2.extras.feature.source"/>
       <feature id="org.eclipse.equinox.p2.rcp.feature"/>
-      <feature id="org.eclipse.equinox.p2.rcp.feature.source"/>
       <feature id="org.eclipse.equinox.p2.user.ui"/>
-      <feature id="org.eclipse.equinox.p2.user.ui.source"/>
       <feature id="org.eclipse.equinox.sdk"/>
       <feature id="org.eclipse.equinox.server.core"/>
       <feature id="org.eclipse.equinox.server.jetty"/>
@@ -694,7 +690,6 @@ Library.
       <feature id="org.eclipse.equinox.serverside.sdk"/>
       <feature id="org.eclipse.equinox.weaving.sdk"/>
       <feature id="org.eclipse.help"/>
-      <feature id="org.eclipse.help.source"/>
       <feature id="org.eclipse.platform"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
       <feature id="org.eclipse.tm.terminal.connector.ssh.feature"/>
