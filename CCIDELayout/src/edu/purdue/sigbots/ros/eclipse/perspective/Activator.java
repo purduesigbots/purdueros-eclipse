@@ -1,5 +1,6 @@
 package edu.purdue.sigbots.ros.eclipse.perspective;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -20,6 +21,11 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
+		String rxtxPath = Platform.getInstallLocation().getURL().getPath() + "rxtx";
+		if(!System.getProperty("java.library.path").contains(rxtxPath)) {
+			System.setProperty("java.library.path", System.getProperty("java.library.path") + ";" + 
+				rxtxPath);
+		}
 	}
 
 	/*

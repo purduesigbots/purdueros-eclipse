@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -58,8 +59,10 @@ public class Activator extends AbstractUIPlugin {
 		PROSActions actions = new PROSActions(true, cliOut, cliErr);
 		Path path = actions.getLocalRepositoryPath();
 		if(actions.getLocalRepositoryPath() == null || actions.getLocalRepositoryPath().toString().isEmpty()) {
+			
 			actions.setLocalKernelRepository(actions.suggestLocalKernelRepository());
 		}
+		String blerp = System.getProperty("java.library.path");
 		if(actions.getUpdateSite() == null) {
 			actions.setUpdateSite(actions.suggestUpdateSite());
 		}
