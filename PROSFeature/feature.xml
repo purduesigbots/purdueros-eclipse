@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="edu.purdue.sigbots.purdueros.eclipse.feature"
+      id="edu.purdue.sigbots.ros.eclipse.feature"
       label="Purdue Robotics Operation System"
-      version="1.5.1.6"
+      version="1.6.0.0"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+      PROS is a lightweight and fast alternative operating system for the VEX Cortex Microcontroller. It features multitasking, low-level control, and Wiring compatible functions to harness the full
+power of the Cortex.
+The Purdue Robotics Operating System Eclipse feature provides an Eclipse perspective, wizards for creating PROS-based projects, and tools to communicate with the Cortex Microcontroller.
    </description>
 
    <copyright url="http://www.example.com/copyright">
-      Copyright (c) 2011-2013, Purdue University ACM SIG BOTS. All rights reserved.
+      Purdue Robotics Operating System (PurdueROS or PROS) Copyright Notice
+
+Copyright (c) 2011-2015, Purdue University ACM SIG BOTS. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -21,7 +25,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
    </copyright>
 
    <license url="http://www.example.com/license">
-      Copyright (c) 2011-2013, Purdue University ACM SIG BOTS. All rights reserved.
+      Purdue Robotics Operating System (PurdueROS or PROS) License Agreement
+
+Copyright (c) 2011-2015, Purdue University ACM SIG BOTS. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -35,16 +41,30 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
       <update label="PROS" url="https://raw.githubusercontent.com/purduesigbots/purdueros-eclipse/master/update-site/site.xml"/>
    </url>
 
+   <includes
+         id="edu.purdue.sigbots.ros.eclipse.dependencies.win32"
+         version="0.0.0"
+         os="win32"/>
+
+   <includes
+         id="edu.purdue.sigbots.ros.eclipse.dependencies.linux"
+         version="0.0.0"
+         os="linux"/>
+
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.ui.ide" version="3.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.debug.ui" version="3.7.0" match="greaterOrEqual"/>
-      <import plugin="edu.purdue.sigbots.ros.eclipse.flashutil" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.cdt" version="8.6.0" match="greaterOrEqual"/>
-      <import plugin="edu.purdue.sigbots.ros.eclipse.manager" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="edu.purdue.sigbots.ros.eclipse.flashutil" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.tm.terminal.view.ui" version="4.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.tm.terminal.connector.serial" version="4.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.intro"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.swt"/>
       <import feature="org.eclipse.tm.terminal.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
       <import feature="org.eclipse.tm.terminal.view.feature" version="4.0.0.201506040610" match="greaterOrEqual"/>
    </requires>
@@ -57,14 +77,21 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
          unpack="false"/>
 
    <plugin
-         id="edu.purdue.sigbots.ros.eclipse.manager"
+         id="edu.purdue.sigbots.ros.eclipse.perspective"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="edu.purdue.sigbots.ros.eclipse.perspective"
+         id="edu.purdue.sigbots.ros.eclipse.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="edu.purdue.sigbots.ros.eclipse.wizard"
          download-size="0"
          install-size="0"
          version="0.0.0"

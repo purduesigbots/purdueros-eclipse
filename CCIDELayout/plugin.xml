@@ -4,90 +4,90 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="PROS for VEX Cortex"
+            name="VEX Cortex"
             icon="icons/vcc16.png"
-            class="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.MidnightCPerspective"
-            id="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.MCPerspective">
+            class="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.PurdueROSPerspective"
+            id="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.PROSPerspective">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.activities">
      <activity
-            id="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
-            name="MinNight C">
+            id="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
+            name="PurdueROS">
      </activity>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.debug\.ui.*([Rr]un|[Dd]ebug|[Pp]rofile).*">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.compare.*">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.ui\.externaltools.*">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.team\.ui.*([Hh]istory|compare|applyPatch|ConfigureProject).*">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*replaceWithPreviousFromHistory">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.ui\.edit\.(cut|copy|paste|delete|findIncremental|findIncrementalReverse)">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.ui\.edit\.text\.(toggleInsertMode|showInformation|hippieCompletion)">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.ui\.file\.refresh">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.ui\.OpenWithMenu">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.ltk\.ui.*">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.cdt\.make\.ui.*Target.*">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.cdt\.debug\.ui.*">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.cdt\.managedbuilder\.ui.*Action">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.ui\.texteditor.*RulerAction">
      </activityPatternBinding>
      <activityPatternBinding
-            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.MCActivity"
+            activityId="edu.purdue.sigbots.ros.eclipse.perspective.activities.PROSActivity"
             isEqualityPattern="false"
             pattern=".*org\.eclipse\.cdt\.ui.*(cfgmenu|buildConfig).*">
      </activityPatternBinding>

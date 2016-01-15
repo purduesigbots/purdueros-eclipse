@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="prosproduct"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="PROS for Eclipse">
+         <property
+               name="windowImages"
+               value="icons/pros16.png,icons/pros32.png,icons/pros48.png,icons/pros64.png,icons/pros128.png,icons/pros256.png">
+         </property>
+         <property
+               name="appName"
+               value="PROS for Eclipse">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="FFFFFF">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,252,445,20">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,275,445,15">
+         </property>
+         <property
+               name="aboutText"
+               value="Eclipse for Purdue Robotics Operaitng System Developers&#x0A;&#x0A;Eclipse Version: Mars.1 Release (4.5.1 )&#x0A;(c) Copyright Eclipse contributors and others 2000, 2015.  All rights reserved. Eclipse and the Eclipse logo are trademarks of the Eclipse Foundation, Inc., https://www.eclipse.org/. The Eclipse logo cannot be altered without Eclipse&apos;s permission. Eclipse logos are provided for use under the Eclipse logo and trademark guidelines, https://www.eclipse.org/logotm/. Oracle and Java are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.&#x0A;&#x0A;This product includes software developed by other open source projects including the Apache Software Foundation, https://www.apache.org/.&#x0A;&#x0A;See PROS Product for Additional Details">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/pros128.png">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+      </product>
+   </extension>
+
+</plugin>
