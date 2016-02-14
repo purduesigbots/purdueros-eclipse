@@ -1,0 +1,20 @@
+Native Build Info:
+------------------
+
+platform:         sparc-sun-solaris2.7
+built by:         martin.oberhuber@windriver.com
+build date:       18-Apr-2007
+OS Name:          Solaris 7 11/99 s998s_u4wos_10 SPARC
+OS Version:       SunOS moon 5.7 Generic_106541-08 sun4u sparc SUNW,UltraAX-MP 
+Compiler version: gcc-3.4.5
+Compiler config:  configure --with-dwarf2 --disable-shared
+
+build script:
+-------------
+#!/bin/sh
+setenv PATH $TOOLSRV/gcc/3.4.5/SunOS/5.7/bin:$TOOLSRV/jdk/1.4.1/SunOS/5.7/bin:$PATH
+mkdir build-sol7
+cd build-sol7
+../configure --disable-lockfiles
+make
+cp sparc-sun-solaris2.7/.libs/librxtxSerial.so $OUTDIR

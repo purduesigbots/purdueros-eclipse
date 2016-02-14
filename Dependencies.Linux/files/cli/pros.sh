@@ -1,1 +1,0 @@
-java -jar pros-0.1.0-shaded.jar "$@"

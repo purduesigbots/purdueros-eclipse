@@ -1,6 +1,5 @@
 package edu.purdue.sigbots.ros.eclipse.wizard.preferences;
 
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
@@ -9,22 +8,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.preference.*;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.ui.console.ConsolePlugin;
-import org.eclipse.ui.console.IConsole;
-import org.eclipse.ui.console.IConsoleManager;
-import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.IWorkbench;
 
-import edu.purdue.sigbots.ros.cli.updater.PROSActions;
+import edu.purdue.sigbots.ros.cli.management.PROSActions;
 import edu.purdue.sigbots.ros.eclipse.wizard.Activator;
 
 /**
@@ -84,7 +76,7 @@ public class WizardPreferencesPage
 				showErrorDialog("Error saving settings", "There was an error saving the settings. Try again later.", IStatus.ERROR, e);
 			}
 			try {
-				actions.setUpdateSite(new URL(store.getString(PreferenceConstants.P_UPDATE_SITE)));
+				actions.setUpdateSite(new URL(store.getString(PreferenceConstants.P_UPDATE_SITE)).toString());
 			} catch (MalformedURLException e) {
 				showErrorDialog("Bad URL input", "The provided URL is invalid.", IStatus.ERROR, e);
 			} catch (IOException e) {
@@ -104,7 +96,7 @@ public class WizardPreferencesPage
 			PROSActions actions = Activator.getPROSActions();
 			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 			store.setValue(PreferenceConstants.P_LOCAL_REPOSITORY, actions.getLocalRepositoryPath().toString());
-			store.setValue(PreferenceConstants.P_UPDATE_SITE, actions.getUpdateSite().toExternalForm());
+			store.setValue(PreferenceConstants.P_UPDATE_SITE, actions.getUpdateSite().toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

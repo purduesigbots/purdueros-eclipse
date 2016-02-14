@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="gnu.io.rxtx.sdk"
+      label="%featureName"
+      version="2.1.7.4_qualifier"
+      provider-name="%providerName"
+      plugin="gnu.io.rxtx"
+      image="rxtx120.png">
+
+   <description url="http://www.rxtx.org">
+      %description
+   </description>
+
+   <copyright url="http://www.rxtx.org/credits.html">
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://rxtx.qbang.org/eclipse"/>
+   </url>
+
+   <includes
+         id="gnu.io.rxtx"
+         version="0.0.0"/>
+
+   <plugin
+         id="gnu.io.rxtx.source"
+         download-size="71"
+         install-size="140"
+         version="0.0.0"/>
+
+</feature>

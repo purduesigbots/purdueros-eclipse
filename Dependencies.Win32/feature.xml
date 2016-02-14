@@ -2,7 +2,7 @@
 <feature
       id="edu.purdue.sigbots.ros.eclipse.dependencies.win32"
       label="PROS Dependencies for Windows"
-      version="1.6.0.0"
+      version="1.6.0.1"
       provider-name="Purdue ACM SIGBOTS"
       os="win32">
 

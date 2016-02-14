@@ -2,10 +2,6 @@ package edu.purdue.sigbots.ros.eclipse.wizard;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -14,7 +10,7 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import edu.purdue.sigbots.ros.cli.updater.PROSActions;
+import edu.purdue.sigbots.ros.cli.management.PROSActions;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -57,14 +53,11 @@ public class Activator extends AbstractUIPlugin {
 	
 	public static PROSActions getPROSActions() throws IOException {
 		PROSActions actions = new PROSActions(true, cliOut, cliErr);
-		Path path = actions.getLocalRepositoryPath();
 		if(actions.getLocalRepositoryPath() == null || actions.getLocalRepositoryPath().toString().isEmpty()) {
-			
 			actions.setLocalKernelRepository(actions.suggestLocalKernelRepository());
 		}
-		String blerp = System.getProperty("java.library.path");
 		if(actions.getUpdateSite() == null) {
-			actions.setUpdateSite(actions.suggestUpdateSite());
+			actions.setUpdateSite(actions.suggestUpdateSite().toString());
 		}
 		if(actions.resolveKernelLocalRequest("all").isEmpty()) {
 			actions.resolveKernelUpdateRequest("latest").forEach((s) -> {

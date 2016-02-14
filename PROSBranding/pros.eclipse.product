@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="PROS for Eclipse" uid="edu.purdue.sigbots.ros.eclipse.product" id="edu.purdue.sigbots.ros.eclipse.branding.prosproduct" application="org.eclipse.ui.ide.workbench" version="1.6.0.0" useFeatures="true" includeLaunchers="true">
+<product name="PROS for Eclipse" uid="edu.purdue.sigbots.ros.eclipse.product" id="edu.purdue.sigbots.ros.eclipse.branding.prosproduct" application="org.eclipse.ui.ide.workbench" version="1.6.0.1" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/PROSBranding/icons/pros128.png"/>
@@ -30,6 +30,9 @@ See PROS Product for Additional Details
 --launcher.defaultAction openFile
 --launcher.appendVmargs
       </programArgs>
+      <programArgsLin>--launcher.library
+plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.300.v20150602-1417
+      </programArgsLin>
       <programArgsWin>--launcher.library
 plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.300.v20150602-1417
       </programArgsWin>
@@ -63,8 +66,6 @@ plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.300.v20150602-1417
    </launcher>
 
    <vm>
-      <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
-      <macos include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</macos>
    </vm>
 
    <license>
@@ -667,7 +668,6 @@ Library.
       <feature id="org.eclipse.cdt.platform"/>
       <feature id="org.eclipse.egit"/>
       <feature id="org.eclipse.e4.rcp"/>
-      <feature id="org.eclipse.e4.rcp.source"/>
       <feature id="org.eclipse.equinox.compendium.sdk"/>
       <feature id="org.eclipse.equinox.core.feature"/>
       <feature id="org.eclipse.equinox.core.sdk"/>
@@ -686,7 +686,6 @@ Library.
       <feature id="org.eclipse.platform"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
       <feature id="org.eclipse.tm.terminal.connector.ssh.feature"/>
-      <feature id="org.eclipse.rcp.source"/>
       <feature id="org.eclipse.tm.terminal.connector.local.feature"/>
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.tm.terminal.connector.telnet.feature"/>
@@ -708,8 +707,8 @@ Library.
       <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.linux.x86"/>
       <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.linux"/>
       <feature id="edu.purdue.sigbots.ros.eclipse.dependencies.win32"/>
-      <feature id="gnu.io.rxtx" version="2.1.7.4_v20071016-7B57e7UAXMAAqGAGf"/>
-      <feature id="gnu.io.rxtx.sdk" version="2.1.7.4_v20071016-417C7DP1Bh_eEaQJBrHBHg"/>
+      <feature id="gnu.io.rxtx"/>
+      <feature id="org.eclipse.cdt.build.crossgcc"/>
    </features>
 
    <configurations>
@@ -725,7 +724,7 @@ Library.
       <property name="org.eclipse.update.reconcile" value="false" />
       <property name="osgi.framework" value="file\:plugins/org.eclipse.osgi_3.10.101.v20150820-1432.jar" />
       <property name="osgi.framework.extension" value="reference\:file\:org.eclipse.osgi.compatibility.state_1.0.100.v20150402-1551.jar" />
-      <property name="osgi.instance.area.default" value="@user.home/workspace" />
+      <property name="osgi.instance.area.default" value="@user.home/pros-workspace" />
       <property name="perspective" value="edu.purdue.sigbots.ros.eclipse.perspective.perspectives.PROSPerspective" />
    </configurations>
 

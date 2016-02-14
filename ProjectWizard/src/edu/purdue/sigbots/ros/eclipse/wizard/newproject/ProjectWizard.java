@@ -1,11 +1,6 @@
 package edu.purdue.sigbots.ros.eclipse.wizard.newproject;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.io.StringBufferInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.nio.file.Path;
@@ -26,19 +21,13 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardContainer;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
-import org.eclipse.ui.console.ConsolePlugin;
-import org.eclipse.ui.console.IConsole;
-import org.eclipse.ui.console.IConsoleManager;
-import org.eclipse.ui.console.MessageConsole;
-import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
-import edu.purdue.sigbots.ros.cli.updater.PROSActions;
+import edu.purdue.sigbots.ros.cli.management.PROSActions;
 import edu.purdue.sigbots.ros.eclipse.wizard.Activator;
 
 public class ProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
@@ -75,7 +64,7 @@ public class ProjectWizard extends Wizard implements INewWizard, IExecutableExte
 			projectDescription.setLocationURI(projectURI);
 
 			final String kernel = page.getKernelTarget();
-			final Path projectPath = Paths.get(project.getFullPath().toOSString());
+			Paths.get(project.getFullPath().toOSString());
 			final List<String> environments = page.getEnvironmentSelection();
 			try {
 				IWizardContainer wizardContainer = this.getContainer();
@@ -119,21 +108,4 @@ public class ProjectWizard extends Wizard implements INewWizard, IExecutableExte
 		this.config = config;
 		
 	}
-
-
-	private MessageConsole findConsole(String name) {
-		ConsolePlugin plugin = ConsolePlugin.getDefault();
-		IConsoleManager consoleManager = plugin.getConsoleManager();
-		for (IConsole console : consoleManager.getConsoles()) {
-			if (name.equals(console.getName())) {
-				return (MessageConsole) console;
-			}
-		}
-		MessageConsole console = new MessageConsole(name, null);
-		consoleManager.addConsoles(new IConsole[] { console });
-		return console;
-	}
-
-	private final PrintStream cliOut = new PrintStream(findConsole("PROS CLI").newMessageStream());
-	private final PrintStream cliErr = new PrintStream(findConsole("PROS CLI").newMessageStream());
 }

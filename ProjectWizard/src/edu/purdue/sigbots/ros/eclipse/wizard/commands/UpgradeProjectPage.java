@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -25,16 +24,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
-
-import edu.purdue.sigbots.ros.cli.updater.PROSActions;
+import edu.purdue.sigbots.ros.cli.management.PROSActions;
 import edu.purdue.sigbots.ros.eclipse.wizard.Activator;
 
 public class UpgradeProjectPage extends WizardPage {
@@ -80,7 +74,7 @@ public class UpgradeProjectPage extends WizardPage {
 		projectList.setContentProvider(new ArrayContentProvider());
 		projectList.setInput(ResourcesPlugin.getWorkspace().getRoot().getProjects());
 		IProject defaultSelection = ResourcesPlugin.getWorkspace().getRoot().getProject();
-		if(defaultSelection == null) {
+		if(defaultSelection == null && ResourcesPlugin.getWorkspace().getRoot().getProjects().length > 0) {
 			defaultSelection = ResourcesPlugin.getWorkspace().getRoot().getProjects()[0];
 		}
 		projectList.setSelection(new StructuredSelection(defaultSelection));

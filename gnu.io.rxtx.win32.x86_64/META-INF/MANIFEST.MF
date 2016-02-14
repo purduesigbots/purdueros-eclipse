@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %fragmentName
+Bundle-SymbolicName: gnu.io.rxtx.win32.x86_64
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: gnu.io.rxtx;bundle-version="2.1.7"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: %providerName
+Eclipse-PlatformFilter: (& (osgi.os=win32) (osgi.arch=x86_64))

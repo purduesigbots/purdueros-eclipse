@@ -1,0 +1,21 @@
+Native Build Info:
+------------------
+
+platform:         x86_64-unknown-linux-gnu
+built by:         martin.oberhuber@windriver.com
+build date:       18-Apr-2007
+OS Name:          openSUSE 10.2 (X86-64)
+OS Version:       Linux osgiliath 2.6.18.8-0.1-default #1 SMP x86_64 GNU/Linux 
+Compiler version: gcc-4.1.2 20061115 (prerelease) (SUSE Linux)
+Compiler config:  configure --enable-threads=posix --enable-ssp --disable-libssp \
+                    --enable-shared --enable-__cxa_atexit --without-system-libunwind \
+                    --with-cpu=generic
+
+build script:
+-------------
+#!/bin/sh
+mkdir build-osgiliath
+cd build-osgiliath
+../configure --disable-lockfiles
+make
+cp x86_64-unknown-linux-gnu/.libs/*.so $OUTDIR

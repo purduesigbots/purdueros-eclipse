@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import edu.purdue.sigbots.ros.cli.updater.PROSActions;
+import edu.purdue.sigbots.ros.cli.management.PROSActions;
 import edu.purdue.sigbots.ros.eclipse.wizard.Activator;
 
 /**
@@ -33,10 +33,10 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		}
 		
 		store.setDefault(PreferenceConstants.P_UPDATE_SITE,
-				actions.suggestUpdateSite().toExternalForm());
+				actions.suggestUpdateSite().toString());
 		if(store.isDefault(PreferenceConstants.P_UPDATE_SITE)) {
 			try {
-				actions.setUpdateSite(actions.suggestUpdateSite());
+				actions.setUpdateSite(actions.suggestUpdateSite().toString());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

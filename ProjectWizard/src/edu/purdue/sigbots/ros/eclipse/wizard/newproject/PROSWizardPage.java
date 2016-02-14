@@ -14,11 +14,8 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.preference.IPreferenceNode;
-import org.eclipse.jface.preference.IPreferencePage;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.preference.PreferenceManager;
-import org.eclipse.jface.preference.PreferenceNode;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.BidiUtils;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -30,8 +27,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowData;
@@ -43,15 +38,13 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.Workbench;
 import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
 import org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea;
 
-import edu.purdue.sigbots.ros.cli.updater.PROSActions;
+import edu.purdue.sigbots.ros.cli.management.PROSActions;
 import edu.purdue.sigbots.ros.eclipse.wizard.Activator;
 import edu.purdue.sigbots.ros.eclipse.wizard.preferences.PreferenceConstants;
-import edu.purdue.sigbots.ros.eclipse.wizard.preferences.WizardPreferencesPage;
 
 // To the future: a lot of this code was yanked from the WizardNewProjectCreationPage source
 @SuppressWarnings("restriction")
@@ -112,8 +105,6 @@ public class PROSWizardPage extends WizardPage implements IWizardPage {
 		Button configPROSButton = new Button(prosConfigurationGroup, SWT.PUSH);
 		configPROSButton.setText("Configure PROS");
 		configPROSButton.addListener(SWT.Selection, (e) -> {
-			IPreferencePage page = new WizardPreferencesPage();
-			
 			PreferenceManager manager = PlatformUI.getWorkbench().getPreferenceManager();
 			PreferenceDialog dialog = new PreferenceDialog(getShell(), manager);
 			dialog.setSelectedNode("edu.purdue.sigbots.ros.eclipse.wizard.preferences.WizardPreferencesPage");
