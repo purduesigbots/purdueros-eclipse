@@ -2,7 +2,7 @@
 <feature
       id="Dependencies.OSX"
       label="PROS Dependencies for OSX"
-      version="1.6.0.0"
+      version="1.6.0.1"
       provider-name="Purdue ACM SIGBOTS">
 
    <description url="http://www.example.com/description">
